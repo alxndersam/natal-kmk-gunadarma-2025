@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body>
 
+<body>
   <header class="hero">
     <div class="overlay"></div>
     <h1>🎄 OPEN RECRUITMENT 🎄</h1>
@@ -92,9 +92,11 @@
       <label>Alasan memilih divisi 2</label>
       <textarea name="alasan2" rows="3" required></textarea>
 
-      <label>Link KRS di Google Drive</label>
-      <input type="url" name="krsURL" placeholder="https://drive.google.com/file/..." required>
-      <small>📎 Pastikan link bisa diakses publik (Anyone with the link → Viewer)</small>
+      <label>Link KRS (Google Drive)</label>
+      <div class="drive-input">
+        <input type="url" name="krsURL" placeholder="https://drive.google.com/file/d/..." required>
+        <button type="button" id="helpDrive" class="help-btn">?</button>
+      </div>
 
       <button type="submit" class="btn-primary">Kirim Pendaftaran 🎁</button>
       <p id="quotaStatus" class="quota"></p>
@@ -105,6 +107,24 @@
     <p>📞 Contact Person: <b>Patrick</b> – +62 812-3720-5071</p>
     <p>© 2025 KMK Universitas Gunadarma</p>
   </footer>
+
+  <!-- MODAL: Cara Share Link KRS -->
+  <div id="driveModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal">&times;</span>
+      <h3>📄 Cara Upload & Share KRS</h3>
+      <ol>
+        <li>Buka Google Drive kamu.</li>
+        <li>Upload file KRS (format JPG/PNG/PDF).</li>
+        <li>Klik kanan file → <b>Bagikan</b>.</li>
+        <li>Pilih “<b>Siapa pun yang memiliki link</b> dapat melihat”.</li>
+        <li>Copy link dengan format seperti:  
+          <code>https://drive.google.com/file/d/ID/view?usp=sharing</code>
+        </li>
+        <li>Tempel link itu ke kolom KRS di form.</li>
+      </ol>
+    </div>
+  </div>
 
   <canvas id="snow"></canvas>
 </body>
