@@ -16,31 +16,20 @@ body {
 .hero {
   position: relative;
   text-align: center;
-  padding: 120px 20px;
   color: white;
-  background: url("https://i.imgur.com/nkYkI9K.jpg") center/cover no-repeat;
-  font-family: "Mountains of Christmas", cursive;
+  padding: 120px 20px;
+  background: linear-gradient(135deg, #0f9b0f, #ff3c3c);
+  font-family: 'Mountains of Christmas', cursive;
 }
-.hero .overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.45);
-}
-.hero h1, .hero h2, .hero p, .btn-primary {
-  position: relative;
-  z-index: 2;
-}
+
 .hero h1 {
   font-size: 3rem;
-}
-.hero h2 {
-  font-size: 1.8rem;
   margin-bottom: 10px;
 }
-.hero p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
+
+.hero h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
 }
 
 /* ==== BUTTON ==== */
@@ -89,32 +78,45 @@ section h2 {
 }
 
 /* ==== FORM ==== */
-.form-section form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  background: #fff;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+.form-section {
+  background: linear-gradient(135deg, #ffeaea, #e6ffe6);
+  padding: 50px 20px;
+  border-radius: 20px;
+  max-width: 700px;
+  margin: 50px auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
-.form-section label {
-  font-weight: 600;
+
+.form-section h2 {
+  color: #d62828;
+  text-align: center;
+  margin-bottom: 25px;
+  font-family: 'Mountains of Christmas', cursive;
 }
+
+/* Form element styling */
 input, select, textarea {
+  width: 100%;
   padding: 10px;
+  margin: 8px 0 16px 0;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
-textarea {
-  resize: vertical;
-}
-.quota {
-  margin-top: 10px;
+
+.btn-primary {
+  background: #0f9b0f;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
   font-weight: bold;
-  color: #e63946;
+  transition: background 0.3s;
+}
+.btn-primary:hover {
+  background: #057a05;
 }
 
 /* ==== FOOTER ==== */
