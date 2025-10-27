@@ -8,8 +8,6 @@
   <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
   <script defer src="script.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -18,13 +16,12 @@
 
   <header class="hero">
     <div class="overlay"></div>
-    <h1 class="glow">🎄 OPEN RECRUITMENT 🎄</h1>
-    <h2 class="glow">Panitia Natal KMK Gunadarma 2025</h2>
+    <h1>🎄 OPEN RECRUITMENT 🎄</h1>
+    <h2>Panitia Natal KMK Gunadarma 2025</h2>
     <p>1 – 3 November 2025</p>
-    <a href="#form" class="btn-primary scroll-btn">Daftar Sekarang</a>
   </header>
 
-  <section class="about section-shadow">
+  <section class="about section">
     <h2>✨ Tentang Acara ✨</h2>
     <p>
       Natal sudah di depan mata! Saatnya kita bersatu dalam sukacita kelahiran Sang Juru Selamat.
@@ -32,7 +29,7 @@
     </p>
   </section>
 
-  <section class="divisions section-shadow">
+  <section class="divisions section">
     <h2>🎅 Pilihan Divisi 🎅</h2>
     <div class="cards">
       <div class="card"><h3>ACARA</h3><p>Menyusun konsep acara penuh sukacita! 🎤</p></div>
@@ -42,37 +39,37 @@
     </div>
   </section>
 
-  <section class="bph section-shadow">
-    <h2>👥 Profil BPH Panitia</h2>
-    <div class="profiles">
-      <div class="profile-card">
-        <img src="images/patrick.jpg" alt="PO">
+  <section class="bph section">
+    <h2>👑 Profil BPH Panitia 👑</h2>
+    <div class="bph-cards">
+      <div class="bph-card">
+        <img src="images/patrick.jpg" alt="Patrick Charlytho">
         <h3>Patrick Charlytho</h3>
-        <p>PO | Psikologi 24</p>
-        <p><b>PIC:</b> Divisi Acara</p>
+        <p><b>PO</b> — PIC Divisi Acara</p>
+        <p>Psikologi · Angkatan 24</p>
       </div>
-      <div class="profile-card">
-        <img src="images/samuel.jpg" alt="Sekretaris">
+      <div class="bph-card">
+        <img src="images/samuel.jpg" alt="Christopher Samuel">
         <h3>Christopher Samuel</h3>
-        <p>Sekretaris | Sistem Informasi 24</p>
-        <p><b>PIC:</b> Divisi HPDD</p>
+        <p><b>Sekretaris</b> — PIC Divisi HPDD</p>
+        <p>Sistem Informasi · Angkatan 24</p>
       </div>
-      <div class="profile-card">
-        <img src="images/caca.jpg" alt="Bendahara">
+      <div class="bph-card">
+        <img src="images/caca.jpg" alt="Chisafeby Cahaya Camilla">
         <h3>Chisafeby Cahaya Camilla</h3>
-        <p>Bendahara | Psikologi 24</p>
-        <p><b>PIC:</b> Divisi MDK</p>
+        <p><b>Bendahara</b> — PIC Divisi MDK</p>
+        <p>Psikologi · Angkatan 24</p>
       </div>
-      <div class="profile-card">
-        <img src="images/memet.jpg" alt="Sekretaris 2">
+      <div class="bph-card">
+        <img src="images/memet.jpg" alt="Matthew Denzel Rindu">
         <h3>Matthew Denzel Rindu</h3>
-        <p>Sekretaris | Psikologi 24</p>
-        <p><b>PIC:</b> Divisi TKP</p>
+        <p><b>Sekretaris</b> — PIC Divisi TKP</p>
+        <p>Psikologi · Angkatan 24</p>
       </div>
     </div>
   </section>
 
-  <section id="form" class="form-section section-shadow">
+  <section id="form" class="form-section section">
     <h2>📝 Form Pendaftaran</h2>
     <form id="regForm">
       <label>Nama Lengkap</label>
@@ -124,10 +121,10 @@
       <label>Alasan memilih divisi 2</label>
       <textarea name="alasan2" rows="3" required></textarea>
 
-      <label>Link Google Drive (KRS)</label>
+      <label>Link Google Drive (KRS dimasukkan ke Google Drive dahulu)</label>
       <input type="url" name="krsURL" placeholder="https://drive.google.com/..." required>
 
-      <p class="note">📎 Pastikan link KRS kamu bisa diakses siapa pun!</p>
+      <p class="note">⚠️ Pastikan file dapat diakses oleh siapa pun dengan link tersebut.</p>
 
       <button type="submit" class="btn-primary">Kirim Pendaftaran 🎁</button>
       <p id="quotaStatus" class="quota"></p>
