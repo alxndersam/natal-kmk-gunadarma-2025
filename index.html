@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Recruitment Panitia Natal KMK Gunadarma 2025</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="hero">
+    <div class="overlay"></div>
+    <h1>🎄 OPEN RECRUITMENT 🎄</h1>
+    <h2>Panitia Natal KMK Gunadarma 2025</h2>
+    <p>1 – 3 November 2025</p>
+    <a href="#form" class="btn-primary">Daftar Sekarang</a>
+  </header>
+
+  <section class="about">
+    <h2>✨ Tentang Acara ✨</h2>
+    <p>
+      Natal sudah di depan mata! Saatnya kita bersatu dalam sukacita kelahiran Sang Juru Selamat. Yuk, ambil bagian dalam
+      kepanitiaan <b>NATAL KMK GUNADARMA 2025</b> dan jadilah bagian dari momen berkat yang penuh sukacita! 🙌
+    </p>
+  </section>
+
+  <section class="divisions">
+    <h2>🎅 Pilihan Divisi 🎅</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>ACARA</h3>
+        <p>Menyusun konsep dan mengatur jalannya acara penuh sukacita! 🎤</p>
+      </div>
+      <div class="card">
+        <h3>HPDD</h3>
+        <p>Humas, Publikasi, Dekorasi, Dokumentasi — biar acara makin hidup! 📸</p>
+      </div>
+      <div class="card">
+        <h3>MDK</h3>
+        <p>Medis, Dana, Konsumsi — penopang utama acara yang siap siaga 💪</p>
+      </div>
+      <div class="card">
+        <h3>TKP</h3>
+        <p>Transportasi, Keamanan, Perlengkapan — tim solid dan tangguh! 🚚</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="form" class="form-section">
+    <h2>📝 Form Pendaftaran</h2>
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <label>Nama Lengkap</label>
+      <input type="text" name="nama" required>
+
+      <label>NPM</label>
+      <input type="text" name="npm" required>
+
+      <label>Program Studi</label>
+      <input type="text" name="prodi" required>
+
+      <label>Divisi yang dipilih</label>
+      <select name="divisi" required>
+        <option value="">-- Pilih Divisi --</option>
+        <option value="Acara">Acara</option>
+        <option value="HPDD">HPDD</option>
+        <option value="MDK">MDK</option>
+        <option value="TKP">TKP</option>
+      </select>
+
+      <label>Alasan ingin bergabung</label>
+      <textarea name="alasan" rows="3" required></textarea>
+
+      <button type="submit" class="btn-primary">Kirim Pendaftaran 🎁</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>📞 Contact Person: <b>Patrick</b> – +62 812-3720-5071</p>
+    <p>© 2025 KMK Universitas Gunadarma</p>
+  </footer>
+
+  <canvas id="snow"></canvas>
+</body>
+</html>
