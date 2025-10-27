@@ -8,6 +8,7 @@ const firebaseConfig = {
   messagingSenderId: "662210467099",
   appId: "1:662210467099:web:8c5c61d5d9598498fd6fbe"
 };
+
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
@@ -40,7 +41,7 @@ form.addEventListener("submit", (e) => {
     }
 
     db.ref("pendaftar").push(data);
-    form.submit(); // lanjut kirim ke Formspree
+    form.submit(); // kirim juga ke Formspree
     alert("🎉 Pendaftaran berhasil! Terima kasih sudah bergabung!");
   });
 });
