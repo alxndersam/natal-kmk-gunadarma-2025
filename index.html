@@ -3,92 +3,140 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Open Recruitment KMK Gunadarma 2025</title>
-  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
+  <title>Open Recruitment Panitia Natal KMK Gunadarma 2025</title>
   <link rel="stylesheet" href="style.css" />
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+  <script defer src="script.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
+  <canvas id="snow"></canvas>
 
-  <!-- HEADER -->
-  <section class="hero">
-    <h1>🎄 OPEN RECRUITMENT 🎄</h1>
-    <h2>Panitia Natal KMK Gunadarma 2025</h2>
+  <header class="hero">
+    <div class="overlay"></div>
+    <h1 class="glow">🎄 OPEN RECRUITMENT 🎄</h1>
+    <h2 class="glow">Panitia Natal KMK Gunadarma 2025</h2>
     <p>1 – 3 November 2025</p>
-    <button>Daftar Sekarang</button>
-  </section>
+    <a href="#form" class="btn-primary scroll-btn">Daftar Sekarang</a>
+  </header>
 
-  <!-- TENTANG ACARA -->
-  <section class="section about">
+  <section class="about section-shadow">
     <h2>✨ Tentang Acara ✨</h2>
     <p>
-      Natal sudah di depan mata! Saatnya kita bersatu dalam sukacita kelahiran Sang Juru Selamat 🎶<br>
-      Yuk, ambil bagian dalam kepanitiaan <strong>NATAL KMK GUNADARMA 2025</strong> dan jadilah bagian dari momen penuh sukacita! ✨
+      Natal sudah di depan mata! Saatnya kita bersatu dalam sukacita kelahiran Sang Juru Selamat.
+      Yuk, ambil bagian dalam kepanitiaan <b>NATAL KMK GUNADARMA 2025</b> dan jadilah bagian dari momen berkat yang penuh sukacita! 🙌
     </p>
   </section>
 
-  <!-- PILIHAN DIVISI -->
-  <section class="section divisions">
-    <h2>🎅 Pilihan Divisi 🤶</h2>
-    <div class="division-cards">
-      <div class="card fade-in"><h3>🎤 ACARA</h3><p>Menyusun konsep acara penuh sukacita!</p></div>
-      <div class="card fade-in"><h3>📸 HPDD</h3><p>Humas, Publikasi, Dekorasi, Dokumentasi.</p></div>
-      <div class="card fade-in"><h3>💰 MDK</h3><p>Medis, Dana, Konsumsi.</p></div>
-      <div class="card fade-in"><h3>💪 TKP</h3><p>Teknis, Koordinasi, Perlengkapan.</p></div>
+  <section class="divisions section-shadow">
+    <h2>🎅 Pilihan Divisi 🎅</h2>
+    <div class="cards">
+      <div class="card"><h3>ACARA</h3><p>Menyusun konsep acara penuh sukacita! 🎤</p></div>
+      <div class="card"><h3>HPDD</h3><p>Humas, Publikasi, Dekorasi, Dokumentasi 📸</p></div>
+      <div class="card"><h3>MDK</h3><p>Medis, Dana, Konsumsi 💰</p></div>
+      <div class="card"><h3>TKP</h3><p>Transportasi, Keamanan, Perlengkapan 💪</p></div>
     </div>
   </section>
 
-  <!-- PROFIL BPH -->
-  <section class="section bph">
-    <h2>🎁 Profil BPH Panitia 🎁</h2>
-    <div class="bph-cards">
-      <div class="bph-card fade-in">
-        <img src="images/patrick.jpg" alt="Patrick Charlytho">
+  <section class="bph section-shadow">
+    <h2>👥 Profil BPH Panitia</h2>
+    <div class="profiles">
+      <div class="profile-card">
+        <img src="images/patrick.jpg" alt="PO">
         <h3>Patrick Charlytho</h3>
-        <p>PO & PIC Divisi Acara<br>Psikologi - Angkatan 24</p>
+        <p>PO | Psikologi 24</p>
+        <p><b>PIC:</b> Divisi Acara</p>
       </div>
-      <div class="bph-card fade-in">
-        <img src="images/samuel.jpg" alt="Christopher Samuel">
+      <div class="profile-card">
+        <img src="images/samuel.jpg" alt="Sekretaris">
         <h3>Christopher Samuel</h3>
-        <p>Sekretaris & PIC Divisi HPDD<br>Sistem Informasi - Angkatan 24</p>
+        <p>Sekretaris | Sistem Informasi 24</p>
+        <p><b>PIC:</b> Divisi HPDD</p>
       </div>
-      <div class="bph-card fade-in">
-        <img src="images/caca.jpg" alt="Chisafeby Cahaya">
-        <h3>Chisafeby Cahaya</h3>
-        <p>Bendahara & PIC Divisi MDK<br>Psikologi - Angkatan 24</p>
+      <div class="profile-card">
+        <img src="images/caca.jpg" alt="Bendahara">
+        <h3>Chisafeby Cahaya Camilla</h3>
+        <p>Bendahara | Psikologi 24</p>
+        <p><b>PIC:</b> Divisi MDK</p>
       </div>
-      <div class="bph-card fade-in">
-        <img src="images/memet.jpg" alt="Matthew Denzel Rindu">
+      <div class="profile-card">
+        <img src="images/memet.jpg" alt="Sekretaris 2">
         <h3>Matthew Denzel Rindu</h3>
-        <p>Sekretaris & PIC Divisi TKP<br>Psikologi - Angkatan 24</p>
+        <p>Sekretaris | Psikologi 24</p>
+        <p><b>PIC:</b> Divisi TKP</p>
       </div>
     </div>
   </section>
 
-  <!-- FORM -->
-  <section class="section form">
+  <section id="form" class="form-section section-shadow">
     <h2>📝 Form Pendaftaran</h2>
     <form id="regForm">
-      <input type="text" placeholder="Nama Lengkap" required>
-      <input type="text" placeholder="NPM" required>
-      <input type="text" placeholder="Program Studi" required>
-      <select required>
-        <option value="">Pilih Angkatan</option>
-        <option>23</option><option>24</option><option>25</option>
+      <label>Nama Lengkap</label>
+      <input type="text" name="nama" required>
+
+      <label>NPM</label>
+      <input type="text" name="npm" required>
+
+      <label>Program Studi</label>
+      <input type="text" name="prodi" required>
+
+      <label>Angkatan</label>
+      <select name="angkatan" required>
+        <option value="">-- Pilih Angkatan --</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
       </select>
-      <select required>
-        <option value="">Pilih Region</option>
-        <option>Depok</option><option>Kalimalang</option><option>Karawaci</option>
+
+      <label>Region</label>
+      <select name="region" required>
+        <option value="">-- Pilih Region --</option>
+        <option value="Depok">Depok</option>
+        <option value="Kalimalang">Kalimalang</option>
+        <option value="Karawaci">Karawaci</option>
       </select>
-      <input type="text" placeholder="Link Google Drive (KRS)" required>
-      <p class="note">⚠️ Pastikan link dapat diakses siapa pun!</p>
-      <button type="submit">Kirim Pendaftaran</button>
+
+      <label>Pilihan Divisi 1</label>
+      <select name="divisi1" required>
+        <option value="">-- Pilih Divisi --</option>
+        <option value="Acara">Acara</option>
+        <option value="HPDD">HPDD</option>
+        <option value="MDK">MDK</option>
+        <option value="TKP">TKP</option>
+      </select>
+
+      <label>Alasan memilih divisi 1</label>
+      <textarea name="alasan1" rows="3" required></textarea>
+
+      <label>Pilihan Divisi 2</label>
+      <select name="divisi2" required>
+        <option value="">-- Pilih Divisi --</option>
+        <option value="Acara">Acara</option>
+        <option value="HPDD">HPDD</option>
+        <option value="MDK">MDK</option>
+        <option value="TKP">TKP</option>
+      </select>
+
+      <label>Alasan memilih divisi 2</label>
+      <textarea name="alasan2" rows="3" required></textarea>
+
+      <label>Link Google Drive (KRS)</label>
+      <input type="url" name="krsURL" placeholder="https://drive.google.com/..." required>
+
+      <p class="note">📎 Pastikan link KRS kamu bisa diakses siapa pun!</p>
+
+      <button type="submit" class="btn-primary">Kirim Pendaftaran 🎁</button>
+      <p id="quotaStatus" class="quota"></p>
     </form>
   </section>
 
   <footer>
-    <p>© 2025 KMK Universitas Gunadarma | Contact: Patrick</p>
+    <p>📞 Contact Person: <b>Patrick</b> – +62 812-3720-5071</p>
+    <p>© 2025 KMK Universitas Gunadarma</p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
