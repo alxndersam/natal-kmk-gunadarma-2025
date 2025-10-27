@@ -4,16 +4,13 @@ const firebaseConfig = {
   authDomain: "kmk-natal-2025.firebaseapp.com",
   databaseURL: "https://kmk-natal-2025-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "kmk-natal-2025",
-  storageBucket: "kmk-natal-2025.appspot.com", // ✅ FIXED
+  storageBucket: "kmk-natal-2025.appspot.com",
   messagingSenderId: "662210467099",
   appId: "1:662210467099:web:8c5c61d5d9598498fd6fbe"
 };
 
-// === INIT FIREBASE ===
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
-const storage = firebase.storage();
-
 const MAX_QUOTA = 34;
 const form = document.getElementById("regForm");
 const quotaStatus = document.getElementById("quotaStatus");
@@ -34,12 +31,10 @@ function checkQuota() {
 // === SUBMIT FORM ===
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-
   const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
   const file = formData.get("krs");
 
-  // Cek kuota dulu
+  // Cek kuota
   const snapshot = await db.ref("pendaftar").once("value");
   const count = snapshot.numChildren();
   if (count >= MAX_QUOTA) {
@@ -47,47 +42,46 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  // Upload KRS ke Firebase Storage
-  const storageRef = storage.ref("krs/" + Date.now() + "_" + file.name);
-  const uploadTask = storageRef.put(file);
+  // === UPLOAD FILE KRS KE GOOGLE DRIVE VIA APPS SCRIPT ===
+  const uploadResponse = await fetch("https://script.google.com/macros/s/AKfycbwSkGGCxvoJcqii47M58rjo3InhWWTY3Y5PqmYp2Yfx2x-yTSk8wfI9F657O2kSxo3EKQ/exec", {
+    method: "POST",
+    body: formData,
+  });
 
-  uploadTask.on(
-    "state_changed",
-    null,
-    (error) => {
-      console.error("Upload gagal:", error);
-      alert("Upload gagal. Coba lagi ya!");
-    },
-    async () => {
-      const fileURL = await uploadTask.snapshot.ref.getDownloadURL();
-      data.krsURL = fileURL;
+  const uploadResult = await uploadResponse.json();
+  if (!uploadResult.success) {
+    alert("Upload KRS gagal. Coba lagi ya!");
+    return;
+  }
 
-      // Simpan ke Realtime Database
-      await db.ref("pendaftar").push(data);
-      console.log("Data berhasil dikirim ke Firebase:", data);
+  // === SIMPAN DATA KE FIREBASE ===
+  const data = Object.fromEntries(formData.entries());
+  data.krsURL = uploadResult.fileUrl; // link dari Google Drive
 
-      alert("🎉 Pendaftaran berhasil dikirim!");
-      form.reset();
-      checkQuota();
-    }
-  );
+  await db.ref("pendaftar").push(data);
+  alert("🎉 Pendaftaran berhasil dikirim!");
+  form.reset();
+  checkQuota();
 });
 
-// === SCROLL EFFECT BUTTON ===
+// === SCROLL BUTTON ===
 document.querySelector(".scroll-btn").addEventListener("click", (e) => {
   e.preventDefault();
   document.querySelector("#form").scrollIntoView({ behavior: "smooth" });
 });
 
-// === EFEK SALJU ===
+// === SNOW EFFECT ===
 const canvas = document.getElementById("snow");
 const ctx = canvas.getContext("2d");
 let width = (canvas.width = window.innerWidth);
 let height = (canvas.height = window.innerHeight);
-const flakes = [];
-for (let i = 0; i < 80; i++) {
-  flakes.push({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 3 + 1, d: Math.random() + 1 });
-}
+const flakes = Array.from({ length: 80 }, () => ({
+  x: Math.random() * width,
+  y: Math.random() * height,
+  r: Math.random() * 3 + 1,
+  d: Math.random() + 1
+}));
+
 let angle = 0;
 function drawSnow() {
   ctx.clearRect(0, 0, width, height);
@@ -114,5 +108,5 @@ window.addEventListener("resize", () => {
   height = canvas.height = window.innerHeight;
 });
 
-// === START ===
+// === MULAI ===
 checkQuota();
