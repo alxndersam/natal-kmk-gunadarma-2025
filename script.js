@@ -2,13 +2,14 @@
 const firebaseConfig = {
   apiKey: "AIzaSyBwZNBcA78NJQUzUA-D1QaxblnrSKwQUhM",
   authDomain: "kmk-natal-2025.firebaseapp.com",
-  databaseURL: "https://console.firebase.google.com/u/0/project/kmk-natal-2025/database/kmk-natal-2025-default-rtdb/data/~2F",
+  databaseURL: "https://kmk-natal-2025-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "kmk-natal-2025",
   storageBucket: "kmk-natal-2025.firebasestorage.app",
   messagingSenderId: "662210467099",
   appId: "1:662210467099:web:8c5c61d5d9598498fd6fbe"
 };
 
+// === INIT FIREBASE ===
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 const storage = firebase.storage();
@@ -17,6 +18,7 @@ const MAX_QUOTA = 34;
 const form = document.getElementById("regForm");
 const quotaStatus = document.getElementById("quotaStatus");
 
+// === CEK KUOTA ===
 function checkQuota() {
   db.ref("pendaftar").once("value", (snapshot) => {
     const count = snapshot.numChildren();
@@ -29,8 +31,10 @@ function checkQuota() {
   });
 }
 
+// === SUBMIT FORM ===
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
   const file = formData.get("krs");
@@ -43,7 +47,7 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  // Upload file KRS ke Firebase Storage
+  // Upload KRS ke Firebase Storage
   const storageRef = storage.ref("krs/" + Date.now() + "_" + file.name);
   const uploadTask = storageRef.put(file);
 
@@ -59,9 +63,9 @@ form.addEventListener("submit", async (e) => {
       data.krsURL = fileURL;
 
       // Simpan ke Realtime Database
-      await db.ref("pendaftar").push(data);
+      await db.ref("/pendaftar").push(data);
 
-      // Kirim ke Formspree
+      // Kirim juga ke Formspree
       fetch("https://formspree.io/f/2857088604037970997", {
         method: "POST",
         headers: { "Accept": "application/json" },
@@ -75,39 +79,5 @@ form.addEventListener("submit", async (e) => {
   );
 });
 
+// === PANGGIL SAAT LOAD ===
 checkQuota();
-
-// === EFEK SALJU ===
-const canvas = document.getElementById("snow");
-const ctx = canvas.getContext("2d");
-let width = (canvas.width = window.innerWidth);
-let height = (canvas.height = window.innerHeight);
-const flakes = [];
-for (let i = 0; i < 80; i++) {
-  flakes.push({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 3 + 1, d: Math.random() + 1 });
-}
-let angle = 0;
-function drawSnow() {
-  ctx.clearRect(0, 0, width, height);
-  ctx.fillStyle = "white";
-  ctx.beginPath();
-  for (let f of flakes) {
-    ctx.moveTo(f.x, f.y);
-    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-  }
-  ctx.fill();
-  moveSnow();
-}
-function moveSnow() {
-  angle += 0.01;
-  for (let f of flakes) {
-    f.y += Math.pow(f.d, 2) + 1;
-    f.x += Math.sin(angle) * 2;
-    if (f.y > height) f.y = 0;
-  }
-}
-setInterval(drawSnow, 33);
-window.addEventListener("resize", () => {
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
-});
