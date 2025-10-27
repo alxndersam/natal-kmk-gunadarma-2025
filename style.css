@@ -1,18 +1,11 @@
-/* ==== GLOBAL ==== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 body {
-  font-family: "Poppins", sans-serif;
-  background-color: #fdf6f0;
-  color: #222;
-  line-height: 1.6;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #fffdf7;
   overflow-x: hidden;
 }
 
-/* ==== HERO SECTION ==== */
+/* === HERO === */
 .hero {
   position: relative;
   text-align: center;
@@ -27,64 +20,49 @@ body {
   margin-bottom: 10px;
 }
 
-.hero h2 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-}
-
-/* ==== BUTTON ==== */
-.btn-primary {
+.scroll-btn {
   display: inline-block;
-  background: #e63946;
-  color: white;
-  padding: 12px 25px;
-  border-radius: 25px;
-  text-decoration: none;
+  background-color: #fff;
+  color: #d62828;
+  padding: 10px 20px;
+  border-radius: 10px;
   font-weight: bold;
-  transition: 0.3s;
+  text-decoration: none;
+  margin-top: 15px;
 }
-.btn-primary:hover {
-  background: #c71f30;
+.scroll-btn:hover {
+  background-color: #ffd6d6;
 }
 
-/* ==== SECTION ==== */
-section {
-  padding: 60px 20px;
+/* === CONTENT === */
+.about, .divisions {
   max-width: 900px;
-  margin: auto;
-}
-section h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #e63946;
+  margin: 50px auto;
+  padding: 0 20px;
 }
 
-/* ==== DIVISIONS ==== */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+h2 {
+  color: #d62828;
+  font-family: 'Mountains of Christmas', cursive;
+  text-align: center;
 }
-.card {
-  background: white;
-  border-radius: 15px;
+
+.division {
+  background: #fff0f0;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  text-align: center;
-}
-.card h3 {
-  color: #e63946;
-  margin-bottom: 10px;
+  border-radius: 15px;
+  margin: 15px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-/* ==== FORM ==== */
+/* === FORM === */
 .form-section {
-  background: linear-gradient(135deg, #ffeaea, #e6ffe6);
+  background: linear-gradient(135deg, #e6ffe6, #ffeaea);
   padding: 50px 20px;
   border-radius: 20px;
   max-width: 700px;
   margin: 50px auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
 .form-section h2 {
@@ -94,7 +72,6 @@ section h2 {
   font-family: 'Mountains of Christmas', cursive;
 }
 
-/* Form element styling */
 input, select, textarea {
   width: 100%;
   padding: 10px;
@@ -102,98 +79,68 @@ input, select, textarea {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
-  font-family: 'Poppins', sans-serif;
+}
+
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .btn-primary {
   background: #0f9b0f;
   color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
 }
 .btn-primary:hover {
   background: #057a05;
 }
 
-/* ==== FOOTER ==== */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #222;
-  color: white;
-  font-size: 0.9rem;
+.btn-secondary {
+  background: #ffe5e5;
+  color: #d62828;
+  margin-bottom: 15px;
+}
+.btn-secondary:hover {
+  background: #ffd6d6;
 }
 
-/* ==== DRIVE INPUT ==== */
-.drive-input {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.help-btn {
-  background: #e63946;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.help-btn:hover {
-  background: #c71f30;
-}
-
-/* ==== MODAL ==== */
+/* === MODAL === */
 .modal {
   display: none;
   position: fixed;
-  z-index: 10;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
   justify-content: center;
   align-items: center;
 }
 .modal-content {
-  background: #fff8f0;
-  padding: 20px 30px;
+  background: white;
+  padding: 25px;
   border-radius: 15px;
-  max-width: 400px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  text-align: left;
-  font-size: 0.95rem;
+  width: 90%;
+  max-width: 500px;
 }
-.modal-content h3 {
-  color: #e63946;
-  margin-bottom: 10px;
-}
-.modal-content code {
-  background: #eee;
-  padding: 3px 6px;
-  border-radius: 6px;
-  display: inline-block;
-}
-#closeModal {
+.close {
   float: right;
-  font-size: 20px;
+  font-size: 24px;
   cursor: pointer;
-  color: #c71f30;
-}
-#closeModal:hover {
-  color: #e63946;
 }
 
-/* ==== SALJU ==== */
-canvas#snow {
+/* === SALJU === */
+#snow {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-  z-index: 1;
 }
