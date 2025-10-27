@@ -9,7 +9,6 @@ const firebaseConfig = {
   appId: "1:662210467099:web:8c5c61d5d9598498fd6fbe"
 };
 
-// === INIT FIREBASE ===
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
@@ -30,20 +29,26 @@ function checkQuota() {
   });
 }
 
+// === VALIDASI LINK GOOGLE DRIVE ===
+function isValidDriveLink(link) {
+  // regex untuk memastikan format-nya kayak: https://drive.google.com/file/d/xxxxx/view
+  const pattern = /^https:\/\/drive\.google\.com\/file\/d\/[a-zA-Z0-9_-]+\/view(\?usp=sharing)?$/;
+  return pattern.test(link.trim());
+}
+
 // === SUBMIT FORM ===
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-
   const formData = Object.fromEntries(new FormData(form).entries());
+  const krsURL = formData.krsURL.trim();
 
-  if (!formData.krsURL.includes("drive.google.com")) {
-    alert("⚠️ Pastikan link KRS berasal dari Google Drive ya!");
+  if (!isValidDriveLink(krsURL)) {
+    alert("⚠️ Link KRS kamu belum sesuai format!\nGunakan link seperti: https://drive.google.com/file/d/ID/view?usp=sharing");
     return;
   }
 
   const snapshot = await db.ref("pendaftar").once("value");
   const count = snapshot.numChildren();
-
   if (count >= MAX_QUOTA) {
     quotaStatus.textContent = "❌ Maaf, kuota sudah penuh.";
     return;
@@ -55,11 +60,20 @@ form.addEventListener("submit", async (e) => {
   checkQuota();
 });
 
-// === SCROLL EFFECT ===
+// === SCROLL ===
 document.querySelector(".scroll-btn").addEventListener("click", (e) => {
   e.preventDefault();
   document.querySelector("#form").scrollIntoView({ behavior: "smooth" });
 });
+
+// === POPUP HELP ===
+const modal = document.getElementById("driveModal");
+const helpBtn = document.getElementById("helpDrive");
+const closeModal = document.getElementById("closeModal");
+
+helpBtn.onclick = () => modal.style.display = "flex";
+closeModal.onclick = () => modal.style.display = "none";
+window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
 
 // === EFEK SALJU ===
 const canvas = document.getElementById("snow");
@@ -96,5 +110,4 @@ window.addEventListener("resize", () => {
   height = canvas.height = window.innerHeight;
 });
 
-// === START ===
 checkQuota();
