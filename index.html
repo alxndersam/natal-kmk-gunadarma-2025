@@ -3,85 +3,148 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Open Recruitment Panitia</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <link href="style.css" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-</head>
-<body>
+  <title>Open Recruitment Panitia Natal KMK Gunadarma 2025</title>
 
-  <header data-aos="fade-down">
-    <h1>OPEN RECRUITMENT PANITIA</h1>
-    <p>1 – 3 November 2025 | Daftarkan dirimu sekarang!</p>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+  <script defer src="script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="hero">
+    <div class="overlay"></div>
+    <h1>🎄 OPEN RECRUITMENT 🎄</h1>
+    <h2>Panitia Natal KMK Gunadarma 2025</h2>
+    <p>1 – 3 November 2025</p>
+    <a href="#form" class="btn-primary scroll-btn">Daftar Sekarang</a>
   </header>
 
-  <section class="divisi" data-aos="fade-up">
-    <h2>Pilih Divisimu</h2>
-    <div class="divisi-grid">
-      <div class="divisi-item"><h3>Acara</h3></div>
-      <div class="divisi-item"><h3>Creativity</h3></div>
-      <div class="divisi-item"><h3>MDK</h3></div>
-      <div class="divisi-item"><h3>Support</h3></div>
-      <div class="divisi-item"><h3>TKP</h3></div>
-      <div class="divisi-item"><h3>Relacivity</h3></div>
-      <div class="divisi-item"><h3>HPDD</h3></div>
-      <div class="divisi-item"><h3>Expression</h3></div>
+  <section class="about" data-aos="fade-up">
+    <h2>✨ Tentang Acara ✨</h2>
+    <p>
+      Natal sudah di depan mata! Saatnya kita bersatu dalam sukacita kelahiran Sang Juru Selamat.
+      Yuk, ambil bagian dalam kepanitiaan <b>NATAL KMK GUNADARMA 2025</b> dan jadilah bagian dari momen berkat yang penuh sukacita! 🙌
+    </p>
+  </section>
+
+  <section class="divisions" data-aos="zoom-in">
+    <h2>🎅 Pilihan Divisi 🎅</h2>
+    <div class="cards">
+      <div class="card"><h3>ACARA</h3><p>Menyusun konsep acara penuh sukacita! 🎤</p></div>
+      <div class="card"><h3>HPDD</h3><p>Humas, Publikasi, Dekorasi, Dokumentasi 📸</p></div>
+      <div class="card"><h3>MDK</h3><p>Medis, Dana, Konsumsi 💰</p></div>
+      <div class="card"><h3>TKP</h3><p>Transportasi, Keamanan, Perlengkapan 💪</p></div>
     </div>
   </section>
 
-  <!-- === PROFIL BPH PANITIA === -->
-  <section class="bph-section">
-    <h2 data-aos="fade-right">Profil BPH Panitia</h2>
+  <section class="bph" data-aos="fade-up">
+    <h2>👑 Profil BPH Panitia</h2>
     <div class="bph-grid">
-
-      <div class="bph-card" data-aos="zoom-in">
-        <img src="https://drive.google.com/uc?export=view&id=11lvaf33KBdsJNgFbBafAhxMwFs4nhDDs" alt="Patrick Charlytho" />
-        <div class="bph-info">
-          <h3>Patrick Charlytho</h3>
-          <p><strong>Jabatan:</strong> PO</p>
-          <p><strong>PIC Divisi:</strong> Acara</p>
-          <p><strong>Jurusan:</strong> Psikologi, Angkatan 2024</p>
-        </div>
+      <div class="bph-card">
+        <img src="https://drive.google.com/uc?export=view&id=11lvaf33KBdsJNgFbBafAhxMwFs4nhDDs" alt="Patrick Charlytho">
+        <h3>Patrick Charlytho</h3>
+        <p><b>PO Panitia</b></p>
+        <p>Psikologi 2024<br>PIC Divisi Acara</p>
       </div>
 
-      <div class="bph-card" data-aos="zoom-in">
-        <img src="https://drive.google.com/uc?export=view&id=1lxZTl9PIjGjh5ezSGIdBJQMdeYUvxXmm" alt="Christopher Samuel" />
-        <div class="bph-info">
-          <h3>Christopher Samuel</h3>
-          <p><strong>Jabatan:</strong> Sekretaris</p>
-          <p><strong>PIC Divisi:</strong> HPDD</p>
-          <p><strong>Jurusan:</strong> Sistem Informasi, Angkatan 2024</p>
-        </div>
+      <div class="bph-card">
+        <img src="https://drive.google.com/uc?export=view&id=1lxZTl9PIjGjh5ezSGIdBJQMdeYUvxXmm" alt="Christopher Samuel">
+        <h3>Christopher Samuel</h3>
+        <p><b>Sekretaris</b></p>
+        <p>Sistem Informasi 2024<br>PIC Divisi HPDD</p>
       </div>
 
-      <div class="bph-card" data-aos="zoom-in">
-        <img src="https://drive.google.com/uc?export=view&id=1h7mmZ2V3MS8NhPQPdO2KuhXcg96k_tgL" alt="Chisafeby Cahaya Camilla" />
-        <div class="bph-info">
-          <h3>Chisafeby Cahaya Camilla</h3>
-          <p><strong>Jabatan:</strong> Bendahara</p>
-          <p><strong>PIC Divisi:</strong> MDK</p>
-          <p><strong>Jurusan:</strong> Psikologi, Angkatan 2024</p>
-        </div>
+      <div class="bph-card">
+        <img src="https://drive.google.com/uc?export=view&id=1h7mmZ2V3MS8NhPQPdO2KuhXcg96k_tgL" alt="Chisafeby Cahaya Camilla">
+        <h3>Chisafeby Cahaya Camilla</h3>
+        <p><b>Bendahara</b></p>
+        <p>Psikologi 2024<br>PIC Divisi MDK</p>
       </div>
 
-      <div class="bph-card" data-aos="zoom-in">
-        <img src="https://drive.google.com/uc?export=view&id=15EaDSmNpsiC2X2s9fKaZCufN_1rzYXaw" alt="Matthew Denzel Rindu" />
-        <div class="bph-info">
-          <h3>Matthew Denzel Rindu</h3>
-          <p><strong>Jabatan:</strong> Sekretaris</p>
-          <p><strong>PIC Divisi:</strong> TKP</p>
-          <p><strong>Jurusan:</strong> Psikologi, Angkatan 2024</p>
-        </div>
+      <div class="bph-card">
+        <img src="https://drive.google.com/uc?export=view&id=15EaDSmNpsiC2X2s9fKaZCufN_1rzYXaw" alt="Matthew Denzel Rindu">
+        <h3>Matthew Denzel Rindu</h3>
+        <p><b>Sekretaris</b></p>
+        <p>Psikologi 2024<br>PIC Divisi TKP</p>
       </div>
-
     </div>
+  </section>
+
+  <section id="form" class="form-section" data-aos="fade-up">
+    <h2>📝 Form Pendaftaran</h2>
+    <form id="regForm">
+      <label>Nama Lengkap</label>
+      <input type="text" name="nama" required>
+
+      <label>NPM</label>
+      <input type="text" name="npm" required>
+
+      <label>Program Studi</label>
+      <input type="text" name="prodi" required>
+
+      <label>Angkatan</label>
+      <select name="angkatan" required>
+        <option value="">-- Pilih Angkatan --</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+      </select>
+
+      <label>Region</label>
+      <select name="region" required>
+        <option value="">-- Pilih Region --</option>
+        <option value="Depok">Depok</option>
+        <option value="Kalimalang">Kalimalang</option>
+        <option value="Karawaci">Karawaci</option>
+      </select>
+
+      <label>Pilihan Divisi 1</label>
+      <select name="divisi1" required>
+        <option value="">-- Pilih Divisi --</option>
+        <option value="Acara">Acara</option>
+        <option value="HPDD">HPDD</option>
+        <option value="MDK">MDK</option>
+        <option value="TKP">TKP</option>
+      </select>
+
+      <label>Alasan memilih divisi 1</label>
+      <textarea name="alasan1" rows="2" required></textarea>
+
+      <label>Pilihan Divisi 2</label>
+      <select name="divisi2" required>
+        <option value="">-- Pilih Divisi --</option>
+        <option value="Acara">Acara</option>
+        <option value="HPDD">HPDD</option>
+        <option value="MDK">MDK</option>
+        <option value="TKP">TKP</option>
+      </select>
+
+      <label>Alasan memilih divisi 2</label>
+      <textarea name="alasan2" rows="2" required></textarea>
+
+      <label>Link Google Drive (KRS)</label>
+      <input type="url" name="krsURL" placeholder="https://drive.google.com/..." required>
+      <p class="note">⚠️ Pastikan link dapat diakses siapa pun (lihat: 'Siapa pun dengan tautan dapat melihat')</p>
+
+      <button type="submit" class="btn-primary">Kirim Pendaftaran 🎁</button>
+      <p id="quotaStatus" class="quota"></p>
+    </form>
   </section>
 
   <footer>
-    <p>© 2025 Panitia Open Recruitment | Universitas XYZ</p>
+    <p>📞 Contact Person: <b>Patrick</b> – +62 812-3720-5071</p>
+    <p>© 2025 KMK Universitas Gunadarma</p>
   </footer>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="script.js"></script>
+  <canvas id="snow"></canvas>
+
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
 </body>
 </html>
