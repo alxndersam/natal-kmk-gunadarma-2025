@@ -12,17 +12,17 @@ body {
 }
 
 .hero {
-  background: url('https://images.unsplash.com/photo-1607604276583-eef5d95bdb40?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  background: url('https://images.unsplash.com/photo-1608889175136-85b5d1a5cc8b?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
   color: white;
   text-align: center;
-  padding: 120px 20px;
+  padding: 140px 20px;
   position: relative;
 }
 
 .hero .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .hero h1, .hero h2, .hero p {
@@ -33,18 +33,20 @@ body {
 .hero h1 {
   font-family: 'Mountains of Christmas', cursive;
   font-size: 3rem;
+  text-shadow: 2px 2px 6px #000;
 }
 
 .hero h2 {
   margin: 10px 0;
   font-size: 1.6rem;
+  text-shadow: 1px 1px 4px #000;
 }
 
 .btn-primary {
   display: inline-block;
-  background: #e63946;
+  background: #ff4d6d;
   color: white;
-  padding: 10px 25px;
+  padding: 12px 28px;
   margin-top: 20px;
   border-radius: 25px;
   text-decoration: none;
@@ -53,10 +55,11 @@ body {
   cursor: pointer;
   position: relative;
   z-index: 2;
+  box-shadow: 0 0 15px rgba(255,77,109,0.6);
 }
 .btn-primary:hover {
-  background: #c71f30;
-  transform: scale(1.05);
+  background: #ff1e4d;
+  transform: scale(1.07);
 }
 
 section {
@@ -79,7 +82,7 @@ section {
 
 .card {
   background: #fff;
-  border: 2px solid #e63946;
+  border: 2px solid #ff4d6d;
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -117,7 +120,7 @@ button {
 }
 
 footer {
-  background: #e63946;
+  background: #ff4d6d;
   color: white;
   padding: 25px;
   text-align: center;
