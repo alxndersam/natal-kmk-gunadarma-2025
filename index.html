@@ -1,69 +1,76 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Open Recruitment Panitia Natal KMK Gunadarma 2025 🎄</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Mountains+of+Christmas:wght@700&display=swap" rel="stylesheet">
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Recruitment Panitia Natal KMK Gunadarma 2025</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+  <script defer src="script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body>
-  <canvas id="snow"></canvas>
 
-  <!-- === HERO SECTION === -->
-  <section class="hero">
+<body>
+  <header class="hero">
+    <div class="overlay"></div>
     <h1>🎄 OPEN RECRUITMENT 🎄</h1>
     <h2>Panitia Natal KMK Gunadarma 2025</h2>
     <p>1 – 3 November 2025</p>
-    <a href="#form" class="scroll-btn">Daftar Sekarang</a>
-  </section>
+    <a href="#form" class="btn-primary scroll-btn">Daftar Sekarang</a>
+  </header>
 
-  <!-- === TENTANG ACARA === -->
   <section class="about">
     <h2>✨ Tentang Acara ✨</h2>
-    <p>Natal sudah di depan mata! Saatnya kita bersatu dalam sukacita kelahiran Sang Juru Selamat 🎶<br>
-      Yuk, ambil bagian dalam kepanitiaan <strong>NATAL KMK GUNADARMA 2025</strong> dan jadilah bagian dari momen penuh berkat! 🙌</p>
+    <p>
+      Natal sudah di depan mata! Saatnya kita bersatu dalam sukacita kelahiran Sang Juru Selamat.
+      Yuk, ambil bagian dalam kepanitiaan <b>NATAL KMK GUNADARMA 2025</b> dan jadilah bagian dari momen berkat yang penuh sukacita! 🙌
+    </p>
   </section>
 
-  <!-- === PILIHAN DIVISI === -->
   <section class="divisions">
-    <h2>👨‍🎄 Pilihan Divisi 👩‍🎄</h2>
-
+    <h2>🎅 Pilihan Divisi 🎅</h2>
     <div class="division">
       <h3>ACARA 🎤</h3>
-      <p>Menyusun konsep acara penuh sukacita!</p>
+      <p>Menyusun konsep acara penuh sukacita dan berkesan bagi semua! 🌟</p>
     </div>
-
     <div class="division">
       <h3>HPDD 📸</h3>
-      <p>Humas, Publikasi, Dekorasi, Dokumentasi.</p>
+      <p>Humas, Publikasi, Dekorasi, dan Dokumentasi — tim kreatif yang bikin acara makin hidup!</p>
     </div>
-
     <div class="division">
-      <h3>MDK 💪</h3>
-      <p>Medis, Dana, Konsumsi.</p>
+      <h3>MDK 💰</h3>
+      <p>Medis, Dana, dan Konsumsi — si tulang punggung acara yang pastikan semua lancar!</p>
     </div>
-
     <div class="division">
-      <h3>TKP 🎵</h3>
-      <p>Teknis, Koordinasi, Perlengkapan.</p>
+      <h3>TKP 💪</h3>
+      <p>Teknis, Koordinasi, dan Perlengkapan — garda terdepan yang siap kerja keras di lapangan!</p>
     </div>
   </section>
 
-  <!-- === FORM PENDAFTARAN === -->
   <section id="form" class="form-section">
     <h2>📝 Formulir Pendaftaran</h2>
-    <p id="quotaStatus">Memuat kuota...</p>
     <form id="regForm">
+      <p id="quotaStatus" class="quota"></p>
+
       <input type="text" name="nama" placeholder="Nama Lengkap" required>
       <input type="text" name="npm" placeholder="NPM" required>
-      <input type="text" name="angkatan" placeholder="Angkatan" required>
       <input type="text" name="prodi" placeholder="Program Studi" required>
-      <input type="text" name="region" placeholder="Region" required>
 
-      <label>Pilih Divisi 1:</label>
+      <select name="angkatan" required>
+        <option value="">-- Pilih Angkatan --</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+      </select>
+
+      <select name="region" required>
+        <option value="">-- Pilih Region --</option>
+        <option value="Depok">Depok</option>
+        <option value="Kalimalang">Kalimalang</option>
+        <option value="Karawaci">Karawaci</option>
+      </select>
+
       <select name="divisi1" required>
         <option value="">-- Pilih Divisi 1 --</option>
         <option value="Acara">Acara</option>
@@ -72,7 +79,8 @@
         <option value="TKP">TKP</option>
       </select>
 
-      <label>Pilih Divisi 2:</label>
+      <textarea name="alasan1" rows="3" placeholder="Alasan memilih Divisi 1" required></textarea>
+
       <select name="divisi2" required>
         <option value="">-- Pilih Divisi 2 --</option>
         <option value="Acara">Acara</option>
@@ -81,32 +89,20 @@
         <option value="TKP">TKP</option>
       </select>
 
-      <textarea name="alasan2" rows="3" placeholder="Alasan memilih divisi 2" required></textarea>
+      <textarea name="alasan2" rows="3" placeholder="Alasan memilih Divisi 2" required></textarea>
 
-      <label for="krsURL">Link KRS (Google Drive)</label>
-      <input type="url" name="krsURL" id="krsURL" placeholder="Masukkan link Google Drive KRS kamu" required>
-      <button type="button" id="helpDrive" class="btn-secondary">💡 Cara bagikan link Drive</button>
+      <input type="url" name="krsURL" placeholder="Link Google Drive KRS kamu" required>
+      <small class="note">📎 Pastikan link KRS bisa diakses oleh siapa pun yang memiliki tautan.</small>
 
-      <button type="submit" class="btn-primary">Kirim Pendaftaran</button>
+      <button type="submit" class="btn-primary">Kirim Pendaftaran 🎁</button>
     </form>
   </section>
 
-  <!-- === MODAL PETUNJUK === -->
-  <div id="driveModal" class="modal">
-    <div class="modal-content">
-      <span id="closeModal" class="close">&times;</span>
-      <h3>🪄 Cara Membagikan Link KRS di Google Drive</h3>
-      <ol>
-        <li>Buka file KRS kamu di Google Drive.</li>
-        <li>Klik tombol <b>Bagikan</b>.</li>
-        <li>Pada bagian <b>“Umum”</b>, ubah ke <b>“Siapa saja yang memiliki link”</b>.</li>
-        <li>Pastikan statusnya <b>Bisa dilihat</b> ✅.</li>
-        <li>Salin link-nya, lalu tempelkan ke form pendaftaran ini.</li>
-      </ol>
-      <p><strong>⚠️ Penting:</strong> Pastikan file kamu benar-benar bisa diakses siapa pun dengan link!</p>
-    </div>
-  </div>
+  <footer>
+    <p>📞 Contact Person: <b>Patrick</b> – +62 812-3720-5071</p>
+    <p>© 2025 KMK Universitas Gunadarma</p>
+  </footer>
 
-  <script src="script.js"></script>
+  <canvas id="snow"></canvas>
 </body>
 </html>
