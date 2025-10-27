@@ -1,12 +1,12 @@
 // === FIREBASE CONFIG ===
 const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
-  authDomain: "YOUR_FIREBASE_PROJECT.firebaseapp.com",
-  databaseURL: "https://YOUR_FIREBASE_PROJECT-default-rtdb.firebaseio.com",
-  projectId: "YOUR_FIREBASE_PROJECT",
-  storageBucket: "YOUR_FIREBASE_PROJECT.appspot.com",
-  messagingSenderId: "000000000000",
-  appId: "YOUR_FIREBASE_APP_ID"
+  apiKey: "AIzaSyBwZNBcA78NJQUzUA-D1QaxblnrSKwQUhM",
+  authDomain: "kmk-natal-2025.firebaseapp.com",
+  databaseURL: "https://kmk-natal-2025-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "kmk-natal-2025",
+  storageBucket: "kmk-natal-2025.firebasestorage.app",
+  messagingSenderId: "662210467099",
+  appId: "1:662210467099:web:8c5c61d5d9598498fd6fbe"
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
