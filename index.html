@@ -5,57 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Open Recruitment Panitia Natal KMK Gunadarma 2025</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
   <script defer src="script.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <!-- HERO SECTION -->
+  <canvas id="snow"></canvas>
+
   <header class="hero">
     <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>🎄 OPEN RECRUITMENT 🎄</h1>
-      <h2>Panitia Natal KMK Gunadarma 2025</h2>
-      <p>1 – 3 November 2025</p>
-      <a href="#about" class="btn scroll-btn">Daftar Sekarang</a>
-    </div>
+    <h1>🎄 OPEN RECRUITMENT 🎄</h1>
+    <h2>Panitia Natal KMK Gunadarma 2025</h2>
+    <p>1 – 3 November 2025</p>
+    <a href="#form" class="btn-primary scroll-btn">Daftar Sekarang</a>
   </header>
 
-  <!-- ABOUT SECTION -->
-  <section id="about" class="about">
+  <section class="about">
     <h2>✨ Tentang Acara ✨</h2>
     <p>
       Natal sudah di depan mata! Saatnya kita bersatu dalam sukacita kelahiran Sang Juru Selamat.  
-      Yuk, ambil bagian dalam kepanitiaan <b>NATAL KMK GUNADARMA 2025</b> dan jadilah bagian dari momen berkat penuh sukacita! 🙌
+      Yuk, ambil bagian dalam kepanitiaan <b>NATAL KMK GUNADARMA 2025</b> dan jadilah bagian dari momen berkat yang penuh sukacita! 🎁  
+      Bersama, kita rayakan kasih dan damai-Nya dalam suasana yang penuh tawa, nyala lilin, dan kehangatan komunitas 🎶
     </p>
   </section>
 
-  <!-- DIVISI SECTION -->
-  <section id="divisi" class="divisions">
+  <section class="divisions">
     <h2>🎅 Pilihan Divisi 🎅</h2>
     <div class="cards">
-      <div class="card">
-        <h3>🎤 Acara</h3>
-        <p>Menyusun konsep acara yang penuh sukacita dan makna Natal!</p>
+      <div class="card"><h3>🎤 ACARA</h3><p>Menyusun konsep acara penuh sukacita dan makna!</p></div>
+      <div class="card"><h3>📸 HPDD</h3><p>Humas, Publikasi, Dekorasi, Dokumentasi — bikin acara makin keren!</p></div>
+      <div class="card"><h3>💸 MDK</h3><p>Medis, Dana, Konsumsi — menjaga dan mendukung kelancaran acara!</p></div>
+      <div class="card"><h3>💪 TKP</h3><p>Transportasi, Keamanan, Perlengkapan — garda terdepan acara!</p></div>
+    </div>
+  </section>
+
+  <section class="bph">
+    <h2>🎁 Profil BPH Panitia 🎁</h2>
+    <div class="bph-grid">
+      <div class="bph-card">
+        <img src="images/patrick.jpg" alt="Patrick">
+        <h3>Patrick Charlytho</h3>
+        <p><b>PO</b></p>
+        <p>Psikologi 24</p>
+        <p>PIC Divisi: Acara</p>
       </div>
-      <div class="card">
-        <h3>📸 HPDD</h3>
-        <p>Menjadi tangan kreatif di bidang Humas, Publikasi, Dekorasi, dan Dokumentasi!</p>
+      <div class="bph-card">
+        <img src="images/samuel.jpg" alt="Christopher">
+        <h3>Christopher Samuel</h3>
+        <p><b>Sekretaris</b></p>
+        <p>Sistem Informasi 24</p>
+        <p>PIC Divisi: HPDD</p>
       </div>
-      <div class="card">
-        <h3>💰 MDK</h3>
-        <p>Menangani dana, konsumsi, dan kebutuhan logistik agar acara berjalan lancar!</p>
+      <div class="bph-card">
+        <img src="images/caca.jpg" alt="Chisafeby">
+        <h3>Chisafeby Cahaya Camilla</h3>
+        <p><b>Bendahara</b></p>
+        <p>Psikologi 24</p>
+        <p>PIC Divisi: MDK</p>
       </div>
-      <div class="card">
-        <h3>💪 TKP</h3>
-        <p>Bertanggung jawab pada transportasi, keamanan, dan perlengkapan selama acara!</p>
+      <div class="bph-card">
+        <img src="images/memet.jpg" alt="Matthew">
+        <h3>Matthew Denzel Rindu</h3>
+        <p><b>Sekretaris</b></p>
+        <p>Psikologi 24</p>
+        <p>PIC Divisi: TKP</p>
       </div>
     </div>
   </section>
 
-  <!-- FORM SECTION -->
   <section id="form" class="form-section">
     <h2>📝 Form Pendaftaran</h2>
     <form id="regForm">
@@ -109,21 +130,33 @@
       <textarea name="alasan2" rows="3" required></textarea>
 
       <label>Link Google Drive (KRS)</label>
-      <input type="url" name="krsURL" placeholder="https://drive.google.com/..." required>
+      <div class="drive-input">
+        <input type="url" name="krsURL" placeholder="https://drive.google.com/..." required>
+        <button type="button" id="helpDrive" class="help-btn">?</button>
+      </div>
+      <small>⚠️ Pastikan link KRS kamu dapat diakses siapa pun (public view)</small>
 
-      <p class="note">⚠️ Pastikan link KRS bisa diakses oleh siapa pun yang memiliki link.</p>
-
-      <button type="submit" class="btn">Kirim Pendaftaran 🎁</button>
+      <button type="submit" class="btn-primary">Kirim Pendaftaran 🎁</button>
       <p id="quotaStatus" class="quota"></p>
     </form>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <p>📞 Contact Person: <b>Patrick</b> – +62 812-3720-5071</p>
     <p>© 2025 KMK Universitas Gunadarma</p>
   </footer>
 
-  <canvas id="snow"></canvas>
+  <div id="driveModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal">&times;</span>
+      <h3>📄 Cara Upload & Share KRS</h3>
+      <ol>
+        <li>Upload file KRS kamu ke Google Drive.</li>
+        <li>Klik kanan → “Bagikan”.</li>
+        <li>Pilih “Siapa pun yang memiliki link dapat melihat”.</li>
+        <li>Copy link dan tempel ke kolom KRS.</li>
+      </ol>
+    </div>
+  </div>
 </body>
 </html>
