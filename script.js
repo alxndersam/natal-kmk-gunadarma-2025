@@ -63,7 +63,9 @@ form.addEventListener("submit", async (e) => {
       data.krsURL = fileURL;
 
       // Simpan ke Realtime Database
-      await db.ref("/pendaftar").push(data);
+      await db.ref("pendaftar").push(data);
+      console.log("Data berhasil dikirim ke Firebase:", data);
+
 
       // Kirim juga ke Formspree
       fetch("https://formspree.io/f/2857088604037970997", {
