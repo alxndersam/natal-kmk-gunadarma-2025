@@ -2,7 +2,7 @@
 const firebaseConfig = {
   apiKey: "AIzaSyBwZNBcA78NJQUzUA-D1QaxblnrSKwQUhM",
   authDomain: "kmk-natal-2025.firebaseapp.com",
-  databaseURL: "https://kmk-natal-2025-default-rtdb.asia-southeast1.firebasedatabase.app",
+  databaseURL: "https://console.firebase.google.com/u/0/project/kmk-natal-2025/database/kmk-natal-2025-default-rtdb/data/~2F",
   projectId: "kmk-natal-2025",
   storageBucket: "kmk-natal-2025.firebasestorage.app",
   messagingSenderId: "662210467099",
