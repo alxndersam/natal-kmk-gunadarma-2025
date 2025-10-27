@@ -4,7 +4,7 @@ const firebaseConfig = {
   authDomain: "kmk-natal-2025.firebaseapp.com",
   databaseURL: "https://kmk-natal-2025-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "kmk-natal-2025",
-  storageBucket: "kmk-natal-2025.firebasestorage.app",
+  storageBucket: "kmk-natal-2025.appspot.com", // ✅ FIXED
   messagingSenderId: "662210467099",
   appId: "1:662210467099:web:8c5c61d5d9598498fd6fbe"
 };
@@ -19,26 +19,27 @@ const form = document.getElementById("regForm");
 const quotaStatus = document.getElementById("quotaStatus");
 
 // === CEK KUOTA ===
-async function checkQuota() {
-  const snapshot = await db.ref("pendaftar").once("value");
-  const count = snapshot.numChildren();
-
-  if (count >= MAX_QUOTA) {
-    quotaStatus.textContent = "❌ Pendaftaran sudah ditutup (Kuota penuh)";
-    form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
-  } else {
-    quotaStatus.textContent = `Kuota tersisa: ${MAX_QUOTA - count} panitia`;
-  }
+function checkQuota() {
+  db.ref("pendaftar").once("value", (snapshot) => {
+    const count = snapshot.numChildren();
+    if (count >= MAX_QUOTA) {
+      quotaStatus.textContent = "❌ Pendaftaran sudah ditutup (Kuota penuh)";
+      form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
+    } else {
+      quotaStatus.textContent = `Kuota tersisa: ${MAX_QUOTA - count} panitia`;
+    }
+  });
 }
 
 // === SUBMIT FORM ===
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
   const file = formData.get("krs");
 
-  // Cek kuota
+  // Cek kuota dulu
   const snapshot = await db.ref("pendaftar").once("value");
   const count = snapshot.numChildren();
   if (count >= MAX_QUOTA) {
@@ -46,25 +47,72 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  try {
-    // Upload file ke Firebase Storage
-    const storageRef = storage.ref(`krs/${Date.now()}_${file.name}`);
-    const uploadTask = await storageRef.put(file);
-    const fileURL = await uploadTask.ref.getDownloadURL();
+  // Upload KRS ke Firebase Storage
+  const storageRef = storage.ref("krs/" + Date.now() + "_" + file.name);
+  const uploadTask = storageRef.put(file);
 
-    data.krsURL = fileURL;
-    data.timestamp = new Date().toISOString();
+  uploadTask.on(
+    "state_changed",
+    null,
+    (error) => {
+      console.error("Upload gagal:", error);
+      alert("Upload gagal. Coba lagi ya!");
+    },
+    async () => {
+      const fileURL = await uploadTask.snapshot.ref.getDownloadURL();
+      data.krsURL = fileURL;
 
-    // Simpan ke Realtime Database
-    await db.ref("pendaftar").push(data);
+      // Simpan ke Realtime Database
+      await db.ref("pendaftar").push(data);
+      console.log("Data berhasil dikirim ke Firebase:", data);
 
-    alert("🎉 Pendaftaran berhasil dikirim!");
-    form.reset();
-    checkQuota();
-  } catch (err) {
-    console.error("❌ Gagal mengirim data:", err);
-    alert("Terjadi kesalahan saat mengirim data. Coba lagi ya!");
-  }
+      alert("🎉 Pendaftaran berhasil dikirim!");
+      form.reset();
+      checkQuota();
+    }
+  );
 });
 
+// === SCROLL EFFECT BUTTON ===
+document.querySelector(".scroll-btn").addEventListener("click", (e) => {
+  e.preventDefault();
+  document.querySelector("#form").scrollIntoView({ behavior: "smooth" });
+});
+
+// === EFEK SALJU ===
+const canvas = document.getElementById("snow");
+const ctx = canvas.getContext("2d");
+let width = (canvas.width = window.innerWidth);
+let height = (canvas.height = window.innerHeight);
+const flakes = [];
+for (let i = 0; i < 80; i++) {
+  flakes.push({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 3 + 1, d: Math.random() + 1 });
+}
+let angle = 0;
+function drawSnow() {
+  ctx.clearRect(0, 0, width, height);
+  ctx.fillStyle = "white";
+  ctx.beginPath();
+  for (let f of flakes) {
+    ctx.moveTo(f.x, f.y);
+    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+  }
+  ctx.fill();
+  moveSnow();
+}
+function moveSnow() {
+  angle += 0.01;
+  for (let f of flakes) {
+    f.y += Math.pow(f.d, 2) + 1;
+    f.x += Math.sin(angle) * 2;
+    if (f.y > height) f.y = 0;
+  }
+}
+setInterval(drawSnow, 33);
+window.addEventListener("resize", () => {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+});
+
+// === START ===
 checkQuota();
