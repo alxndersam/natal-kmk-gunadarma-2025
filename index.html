@@ -5,147 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Open Recruitment Panitia</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: "Poppins", sans-serif;
-      background: #f8f5f0;
-      color: #333;
-      overflow-x: hidden;
-    }
-
-    header {
-      background: linear-gradient(135deg, #b22222, #006400);
-      color: white;
-      text-align: center;
-      padding: 3rem 1rem;
-    }
-
-    header h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-
-    .divisi {
-      text-align: center;
-      padding: 3rem 1rem;
-      background: #fff7f0;
-    }
-
-    .divisi h2 {
-      color: #b22222;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .divisi-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .divisi-item {
-      background: #fff;
-      border-radius: 1rem;
-      padding: 1rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: 0.3s;
-      cursor: pointer;
-      border: 2px solid transparent;
-    }
-
-    .divisi-item:hover {
-      border: 2px solid #b22222;
-      transform: scale(1.03);
-    }
-
-    .divisi-item h3 {
-      color: #006400;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    /* === PROFIL BPH PANITIA === */
-    .bph-section {
-      background: #fef9f5;
-      padding: 3rem 1rem;
-      text-align: center;
-    }
-
-    .bph-section h2 {
-      color: #b22222;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .bph-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .bph-card {
-      background: white;
-      border-radius: 1.5rem;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: transform 0.3s ease;
-    }
-
-    .bph-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .bph-card img {
-      width: 100%;
-      height: 320px;
-      object-fit: cover;
-    }
-
-    .bph-info {
-      padding: 1rem 1.2rem;
-    }
-
-    .bph-info h3 {
-      color: #006400;
-      margin: 0.5rem 0;
-      font-weight: 600;
-    }
-
-    .bph-info p {
-      margin: 0.2rem 0;
-      font-size: 0.95rem;
-    }
-
-    footer {
-      background: #b22222;
-      color: white;
-      text-align: center;
-      padding: 1.2rem;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
-      .bph-card img { height: 260px; }
-    }
-  </style>
 </head>
 <body>
 
@@ -221,8 +82,6 @@
   </footer>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1000, once: true });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
