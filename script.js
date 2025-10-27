@@ -24,16 +24,14 @@ function checkQuota() {
       quotaStatus.textContent = "❌ Pendaftaran sudah ditutup (Kuota penuh)";
       form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
     } else {
-      quotaStatus.textContent = `Kuota tersisa: ${MAX_QUOTA - count} panitia`;
+      quotaStatus.textContent = `Kuota tersisa: ${MAX_QUOTA - count} panitia 🎄`;
     }
   });
 }
 
-// === VALIDASI LINK GOOGLE DRIVE ===
+// === CEK LINK DRIVE ===
 function isValidDriveLink(link) {
-  // regex untuk memastikan format-nya kayak: https://drive.google.com/file/d/xxxxx/view
-  const pattern = /^https:\/\/drive\.google\.com\/file\/d\/[a-zA-Z0-9_-]+\/view(\?usp=sharing)?$/;
-  return pattern.test(link.trim());
+  return link.includes("drive.google.com");
 }
 
 // === SUBMIT FORM ===
@@ -43,7 +41,7 @@ form.addEventListener("submit", async (e) => {
   const krsURL = formData.krsURL.trim();
 
   if (!isValidDriveLink(krsURL)) {
-    alert("⚠️ Link KRS kamu belum sesuai format!\nGunakan link seperti: https://drive.google.com/file/d/ID/view?usp=sharing");
+    alert("⚠️ Pastikan link kamu dari Google Drive ya (mengandung drive.google.com)");
     return;
   }
 
