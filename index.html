@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
   <script defer src="script.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +43,7 @@
 
   <section id="form" class="form-section">
     <h2>📝 Form Pendaftaran</h2>
-    <form id="regForm" action="https://formspree.io/f/2857088604037970997" method="POST" enctype="multipart/form-data">
+    <form id="regForm">
       <label>Nama Lengkap</label>
       <input type="text" name="nama" required>
 
@@ -51,6 +52,22 @@
 
       <label>Program Studi</label>
       <input type="text" name="prodi" required>
+
+      <label>Angkatan</label>
+      <select name="angkatan" required>
+        <option value="">-- Pilih Angkatan --</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+      </select>
+
+      <label>Region</label>
+      <select name="region" required>
+        <option value="">-- Pilih Region --</option>
+        <option value="Depok">Depok</option>
+        <option value="Kalimalang">Kalimalang</option>
+        <option value="Karawaci">Karawaci</option>
+      </select>
 
       <label>Pilihan Divisi 1</label>
       <select name="divisi1" required>
@@ -77,7 +94,7 @@
       <textarea name="alasan2" rows="3" required></textarea>
 
       <label>Upload KRS (jpg/png/pdf)</label>
-      <input type="file" name="krs" accept=".jpg,.jpeg,.png,.pdf" required>
+      <input type="file" id="krsFile" name="krs" accept=".jpg,.jpeg,.png,.pdf" required>
 
       <button type="submit" class="btn-primary">Kirim Pendaftaran 🎁</button>
       <p id="quotaStatus" class="quota"></p>
