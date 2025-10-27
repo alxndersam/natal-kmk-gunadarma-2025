@@ -37,7 +37,10 @@ form.addEventListener("submit", async (e) => {
   const formData = new FormData(form);
   const file = formData.get("krs");
 
-  // Cek kuota
+  const nama = formData.get("nama")?.trim() || "TanpaNama";
+  const npm = formData.get("npm")?.trim() || "Unknown";
+
+  // Cek kuota dulu
   const snapshot = await db.ref("pendaftar").once("value");
   const count = snapshot.numChildren();
   if (count >= MAX_QUOTA) {
@@ -45,24 +48,34 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  // Upload ke Google Apps Script (Drive)
+  // === UPLOAD FILE KE GOOGLE DRIVE MELALUI APPS SCRIPT ===
   const scriptURL = "https://script.google.com/macros/s/AKfycbwSkGGCxvoJcqii47M58rjo3InhWWTY3Y5PqmYp2Yfx2x-yTSk8wfI9F657O2kSxo3EKQ/exec";
-  const uploadData = new FormData();
-  uploadData.append("file", file);
 
   try {
-    const res = await fetch(scriptURL, { method: "POST", body: uploadData });
-    const fileURL = await res.text();
+    // Siapkan file baru dengan nama custom biar rapi
+    const renamedFile = new File([file], `KRS_${npm}_${nama}${file.name.substring(file.name.lastIndexOf('.'))}`, {
+      type: file.type,
+    });
 
+    const res = await fetch(scriptURL, {
+      method: "POST",
+      body: renamedFile, // langsung kirim blob, bukan FormData
+    });
+
+    const fileURL = await res.text();
+    console.log("File uploaded to Drive:", fileURL);
+
+    // === SIMPAN DATA KE FIREBASE ===
     const data = Object.fromEntries(formData.entries());
     data.krsURL = fileURL.trim();
 
     await db.ref("pendaftar").push(data);
+
     alert("🎉 Pendaftaran berhasil dikirim!");
     form.reset();
     checkQuota();
   } catch (err) {
-    console.error("Gagal kirim:", err);
+    console.error("❌ Gagal kirim:", err);
     alert("Gagal kirim data, coba lagi ya!");
   }
 });
@@ -79,9 +92,16 @@ const ctx = canvas.getContext("2d");
 let width = (canvas.width = window.innerWidth);
 let height = (canvas.height = window.innerHeight);
 const flakes = [];
+
 for (let i = 0; i < 80; i++) {
-  flakes.push({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 3 + 1, d: Math.random() + 1 });
+  flakes.push({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    r: Math.random() * 3 + 1,
+    d: Math.random() + 1,
+  });
 }
+
 let angle = 0;
 function drawSnow() {
   ctx.clearRect(0, 0, width, height);
@@ -94,6 +114,7 @@ function drawSnow() {
   ctx.fill();
   moveSnow();
 }
+
 function moveSnow() {
   angle += 0.01;
   for (let f of flakes) {
@@ -102,6 +123,7 @@ function moveSnow() {
     if (f.y > height) f.y = 0;
   }
 }
+
 setInterval(drawSnow, 33);
 window.addEventListener("resize", () => {
   width = canvas.width = window.innerWidth;
