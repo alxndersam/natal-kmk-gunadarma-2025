@@ -1,111 +1,28 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+body {
   font-family: "Poppins", sans-serif;
-  background: #fffefc;
-  color: #222;
+  background: #f8f5f0;
+  color: #333;
+  overflow-x: hidden;
+}
+
+header {
+  background: linear-gradient(135deg, #b22222, #006400);
+  color: white;
   text-align: center;
+  padding: 3rem 1rem;
 }
 
-/* Hero Section */
-.hero {
-  background: linear-gradient(135deg, #176d36, #d94444);
-  color: white;
-  padding: 80px 20px;
-  position: relative;
-}
-.hero h1 {
-  font-family: "Mountains of Christmas", cursive;
+header h1 {
   font-size: 2.8rem;
-  margin-bottom: 10px;
-}
-.hero h2 {
-  font-weight: 500;
-  font-size: 1.3rem;
-  margin-bottom: 5px;
-}
-.hero .btn-primary {
-  background: white;
-  color: #d94444;
-  padding: 10px 20px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: 0.3s;
-  font-weight: bold;
-}
-.hero .btn-primary:hover {
-  background: #f3dada;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
-/* Sections */
-.about, .divisions {
-  padding: 50px 20px;
-  max-width: 750px;
-  margin: auto;
-}
-
-.division {
-  margin-bottom: 30px;
-}
-.division h3 {
-  color: #d94444;
-  font-family: "Mountains of Christmas", cursive;
-}
-
-/* Form Section */
-.form-section {
-  background: linear-gradient(135deg, #d6ffd6, #ffe1e1);
-  padding: 50px 20px;
-  border-radius: 20px;
-  margin: 40px auto;
-  max-width: 600px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-input, select, textarea {
-  padding: 10px;
-  border: 1.5px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.btn-primary {
-  background: #2e8b57;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.btn-primary:hover {
-  background: #256c45;
-}
-
-.note {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-/* Footer */
-footer {
-  background: #176d36;
-  color: white;
-  padding: 20px;
-  margin-top: 50px;
-  font-size: 0.9rem;
-}
-
-/* Snow Effect */
-canvas#snow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  pointer-events: none;
-}
+header p {
+  font-size: 1.2rem;
