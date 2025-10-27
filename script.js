@@ -1,47 +1,83 @@
-// Efek salju
+// === FIREBASE CONFIG ===
+const firebaseConfig = {
+  apiKey: "YOUR_FIREBASE_API_KEY",
+  authDomain: "YOUR_FIREBASE_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_FIREBASE_PROJECT-default-rtdb.firebaseio.com",
+  projectId: "YOUR_FIREBASE_PROJECT",
+  storageBucket: "YOUR_FIREBASE_PROJECT.appspot.com",
+  messagingSenderId: "000000000000",
+  appId: "YOUR_FIREBASE_APP_ID"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// === BATAS KUOTA ===
+const MAX_QUOTA = 34;
+const quotaStatus = document.getElementById("quotaStatus");
+const form = document.getElementById("regForm");
+
+function checkQuota() {
+  db.ref("pendaftar").once("value", (snapshot) => {
+    const count = snapshot.numChildren();
+    if (count >= MAX_QUOTA) {
+      quotaStatus.textContent = "❌ Pendaftaran sudah ditutup (kuota penuh)";
+      form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
+    } else {
+      quotaStatus.textContent = `Kuota tersisa: ${MAX_QUOTA - count} panitia`;
+    }
+  });
+}
+
+// Simpan data setelah submit
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(form).entries());
+
+  db.ref("pendaftar").once("value", (snapshot) => {
+    const count = snapshot.numChildren();
+    if (count >= MAX_QUOTA) {
+      quotaStatus.textContent = "❌ Maaf, kuota sudah penuh.";
+      return;
+    }
+
+    db.ref("pendaftar").push(data);
+    form.submit(); // lanjut kirim ke Formspree
+    alert("🎉 Pendaftaran berhasil! Terima kasih sudah bergabung!");
+  });
+});
+
+checkQuota();
+
+// === EFEK SALJU ===
 const canvas = document.getElementById("snow");
 const ctx = canvas.getContext("2d");
 let width = (canvas.width = window.innerWidth);
 let height = (canvas.height = window.innerHeight);
-
 const flakes = [];
 for (let i = 0; i < 80; i++) {
-  flakes.push({
-    x: Math.random() * width,
-    y: Math.random() * height,
-    r: Math.random() * 3 + 1,
-    d: Math.random() + 1
-  });
+  flakes.push({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 3 + 1, d: Math.random() + 1 });
 }
-
+let angle = 0;
 function drawSnow() {
   ctx.clearRect(0, 0, width, height);
   ctx.fillStyle = "white";
   ctx.beginPath();
-  for (let i = 0; i < flakes.length; i++) {
-    const f = flakes[i];
+  for (let f of flakes) {
     ctx.moveTo(f.x, f.y);
-    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
+    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
   }
   ctx.fill();
   moveSnow();
 }
-
-let angle = 0;
 function moveSnow() {
   angle += 0.01;
-  for (let i = 0; i < flakes.length; i++) {
-    const f = flakes[i];
+  for (let f of flakes) {
     f.y += Math.pow(f.d, 2) + 1;
     f.x += Math.sin(angle) * 2;
-    if (f.y > height) {
-      flakes[i] = { x: Math.random() * width, y: 0, r: f.r, d: f.d };
-    }
+    if (f.y > height) f.y = 0;
   }
 }
-
 setInterval(drawSnow, 33);
-
 window.addEventListener("resize", () => {
   width = canvas.width = window.innerWidth;
   height = canvas.height = window.innerHeight;
