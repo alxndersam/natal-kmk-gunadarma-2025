@@ -1,157 +1,160 @@
 body {
-  font-family: "Poppins", sans-serif;
   margin: 0;
-  background-color: #111;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #06340a, #601515);
   color: white;
   overflow-x: hidden;
 }
 
-canvas#snow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0;
-}
-
+/* Hero */
 .hero {
+  position: relative;
   height: 100vh;
-  background: linear-gradient(135deg, #006400, #8b0000);
+  background: linear-gradient(120deg, #064420, #6a040f);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  position: relative;
-  z-index: 1;
+  color: #fff;
 }
 
-.hero-content {
-  z-index: 2;
-}
-
-.hero h1 {
-  font-size: 2rem;
+.hero-content h1 {
+  font-family: 'Mountains of Christmas', cursive;
+  font-size: 3rem;
+  color: gold;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
   margin-bottom: 10px;
 }
 
-.hero p {
-  font-size: 1.1rem;
+.hero-content h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  background: #e63946;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: gold;
+  color: #601515;
+  transform: scale(1.05);
+}
+
+/* About Section */
+.about {
+  text-align: center;
+  padding: 80px 20px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.about h2 {
+  font-family: 'Mountains of Christmas', cursive;
+  color: gold;
   margin-bottom: 20px;
 }
 
-.scroll-btn {
-  background: white;
-  color: black;
-  padding: 10px 20px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: bold;
+/* Divisions */
+.divisions {
+  padding: 60px 20px;
+  text-align: center;
 }
 
-.scroll-btn:hover {
-  background: #ffcccb;
+.divisions h2 {
+  font-family: 'Mountains of Christmas', cursive;
+  color: gold;
+  margin-bottom: 40px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  width: 80%;
+  max-width: 300px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border: 2px solid gold;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
 }
 
 /* Form Section */
 .form-section {
-  background: linear-gradient(135deg, #8b0000, #006400);
-  padding: 50px 20px;
+  padding: 60px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 2px solid gold;
   text-align: center;
+}
+
+.form-section h2 {
+  color: gold;
+  font-family: 'Mountains of Christmas', cursive;
+  margin-bottom: 30px;
 }
 
 form {
-  max-width: 500px;
-  margin: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 15px;
+  max-width: 500px;
+  margin: auto;
 }
 
-input,
-select,
-textarea {
+input, select, textarea {
+  width: 100%;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
+  outline: none;
   font-size: 1rem;
 }
 
-button {
-  background: #ffcccb;
-  color: black;
+textarea {
+  resize: vertical;
+}
+
+.note {
+  font-size: 0.85rem;
+  color: #ffb;
+}
+
+.quota {
+  margin-top: 10px;
   font-weight: bold;
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
 }
 
-button:hover {
-  background: white;
-}
-
-.divisi-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-}
-
-.divisi-container label {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 8px 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.divisi-container label:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-/* BPH Section */
-.bph-section {
-  padding: 60px 20px;
-  background: linear-gradient(135deg, #006400, #8b0000);
+/* Footer */
+footer {
   text-align: center;
-}
-
-.bph-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.bph-card {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
   padding: 20px;
-  width: 250px;
-  transition: 0.3s;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  background: #05210f;
+  font-size: 0.9rem;
 }
 
-.bph-card:hover {
-  transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.bph-card img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  border-radius: 15px;
-  margin-bottom: 15px;
-}
-
-.bph-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.bph-card p {
-  font-size: 0.95rem;
-  margin: 3px 0;
-  opacity: 0.9;
+/* Snow effect */
+canvas#snow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 100;
 }
