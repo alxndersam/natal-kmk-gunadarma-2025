@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Open Recruitment Panitia Natal KMK Gunadarma 2025</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+  <script defer src="script.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -31,28 +33,16 @@
   <section class="divisions">
     <h2>🎅 Pilihan Divisi 🎅</h2>
     <div class="cards">
-      <div class="card">
-        <h3>ACARA</h3>
-        <p>Menyusun konsep dan mengatur jalannya acara penuh sukacita! 🎤</p>
-      </div>
-      <div class="card">
-        <h3>HPDD</h3>
-        <p>Humas, Publikasi, Dekorasi, Dokumentasi — biar acara makin hidup! 📸</p>
-      </div>
-      <div class="card">
-        <h3>MDK</h3>
-        <p>Medis, Dana, Konsumsi — penopang utama acara yang siap siaga 💪</p>
-      </div>
-      <div class="card">
-        <h3>TKP</h3>
-        <p>Transportasi, Keamanan, Perlengkapan — tim solid dan tangguh! 🚚</p>
-      </div>
+      <div class="card"><h3>ACARA</h3><p>Menyusun konsep acara penuh sukacita! 🎤</p></div>
+      <div class="card"><h3>HPDD</h3><p>Humas, Publikasi, Dekorasi, Dokumentasi 📸</p></div>
+      <div class="card"><h3>MDK</h3><p>Medis, Dana, Konsumsi 💪</p></div>
+      <div class="card"><h3>TKP</h3><p>Transportasi, Keamanan, Perlengkapan 🚚</p></div>
     </div>
   </section>
 
   <section id="form" class="form-section">
     <h2>📝 Form Pendaftaran</h2>
-    <form action="https://formspree.io/f/2857088604037970997" method="POST">
+    <form id="regForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
       <label>Nama Lengkap</label>
       <input type="text" name="nama" required>
 
@@ -62,8 +52,8 @@
       <label>Program Studi</label>
       <input type="text" name="prodi" required>
 
-      <label>Divisi yang dipilih</label>
-      <select name="divisi" required>
+      <label>Pilihan Divisi 1</label>
+      <select name="divisi1" required>
         <option value="">-- Pilih Divisi --</option>
         <option value="Acara">Acara</option>
         <option value="HPDD">HPDD</option>
@@ -71,10 +61,23 @@
         <option value="TKP">TKP</option>
       </select>
 
-      <label>Alasan ingin bergabung</label>
-      <textarea name="alasan" rows="3" required></textarea>
+      <label>Alasan memilih divisi 1</label>
+      <textarea name="alasan1" rows="3" required></textarea>
+
+      <label>Pilihan Divisi 2</label>
+      <select name="divisi2" required>
+        <option value="">-- Pilih Divisi --</option>
+        <option value="Acara">Acara</option>
+        <option value="HPDD">HPDD</option>
+        <option value="MDK">MDK</option>
+        <option value="TKP">TKP</option>
+      </select>
+
+      <label>Alasan memilih divisi 2</label>
+      <textarea name="alasan2" rows="3" required></textarea>
 
       <button type="submit" class="btn-primary">Kirim Pendaftaran 🎁</button>
+      <p id="quotaStatus" class="quota"></p>
     </form>
   </section>
 
