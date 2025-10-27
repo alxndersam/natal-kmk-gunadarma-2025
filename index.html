@@ -23,4 +23,88 @@
   </header>
 
   <section class="about">
-    <h2>✨
+    <h2>✨ Tentang Acara ✨</h2>
+    <p>
+      Natal sudah di depan mata! Saatnya kita bersatu dalam sukacita kelahiran Sang Juru Selamat.
+      Yuk, ambil bagian dalam kepanitiaan <b>NATAL KMK GUNADARMA 2025</b> dan jadilah bagian dari momen berkat yang penuh sukacita! 🙌
+    </p>
+  </section>
+
+  <section class="divisions">
+    <h2>🎅 Pilihan Divisi 🎅</h2>
+    <div class="cards">
+      <div class="card"><h3>ACARA</h3><p>Menyusun konsep acara penuh sukacita! 🎤</p></div>
+      <div class="card"><h3>HPDD</h3><p>Humas, Publikasi, Dekorasi, Dokumentasi 📸</p></div>
+      <div class="card"><h3>MDK</h3><p>Medis, Dana, Konsumsi 💪</p></div>
+      <div class="card"><h3>TKP</h3><p>Transportasi, Keamanan, Perlengkapan 🚚</p></div>
+    </div>
+  </section>
+
+  <section id="form" class="form-section">
+    <h2>📝 Form Pendaftaran</h2>
+    <form id="regForm" enctype="multipart/form-data">
+      <label>Nama Lengkap</label>
+      <input type="text" name="nama" required>
+
+      <label>NPM</label>
+      <input type="text" name="npm" required>
+
+      <label>Program Studi</label>
+      <input type="text" name="prodi" required>
+
+      <label>Angkatan</label>
+      <select name="angkatan" required>
+        <option value="">-- Pilih Angkatan --</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+      </select>
+
+      <label>Region</label>
+      <select name="region" required>
+        <option value="">-- Pilih Region --</option>
+        <option value="Depok">Depok</option>
+        <option value="Kalimalang">Kalimalang</option>
+        <option value="Karawaci">Karawaci</option>
+      </select>
+
+      <label>Pilihan Divisi 1</label>
+      <select name="divisi1" required>
+        <option value="">-- Pilih Divisi --</option>
+        <option value="Acara">Acara</option>
+        <option value="HPDD">HPDD</option>
+        <option value="MDK">MDK</option>
+        <option value="TKP">TKP</option>
+      </select>
+
+      <label>Alasan memilih divisi 1</label>
+      <textarea name="alasan1" rows="3" required></textarea>
+
+      <label>Pilihan Divisi 2</label>
+      <select name="divisi2" required>
+        <option value="">-- Pilih Divisi --</option>
+        <option value="Acara">Acara</option>
+        <option value="HPDD">HPDD</option>
+        <option value="MDK">MDK</option>
+        <option value="TKP">TKP</option>
+      </select>
+
+      <label>Alasan memilih divisi 2</label>
+      <textarea name="alasan2" rows="3" required></textarea>
+
+      <label>Upload KRS (jpg/png/pdf)</label>
+      <input type="file" name="krs" accept=".jpg,.jpeg,.png,.pdf" required>
+
+      <button type="submit" class="btn-primary">Kirim Pendaftaran 🎁</button>
+      <p id="quotaStatus" class="quota"></p>
+    </form>
+  </section>
+
+  <footer>
+    <p>📞 Contact Person: <b>Patrick</b> – +62 812-3720-5071</p>
+    <p>© 2025 KMK Universitas Gunadarma</p>
+  </footer>
+
+  <canvas id="snow"></canvas>
+</body>
+</html>
