@@ -25,8 +25,8 @@
   <section class="about">
     <h2>✨ Tentang Acara ✨</h2>
     <p>
-      Natal sudah di depan mata! Saatnya kita bersatu dalam sukacita kelahiran Sang Juru Selamat. Yuk, ambil bagian dalam
-      kepanitiaan <b>NATAL KMK GUNADARMA 2025</b> dan jadilah bagian dari momen berkat yang penuh sukacita! 🙌
+      Natal sudah di depan mata! Saatnya kita bersatu dalam sukacita kelahiran Sang Juru Selamat.
+      Yuk, ambil bagian dalam kepanitiaan <b>NATAL KMK GUNADARMA 2025</b> dan jadilah bagian dari momen berkat yang penuh sukacita! 🙌
     </p>
   </section>
 
@@ -42,7 +42,7 @@
 
   <section id="form" class="form-section">
     <h2>📝 Form Pendaftaran</h2>
-    <form id="regForm" action="https://formspree.io/f/2857088604037970997" method="POST">
+    <form id="regForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
       <label>Nama Lengkap</label>
       <input type="text" name="nama" required>
 
@@ -75,6 +75,9 @@
 
       <label>Alasan memilih divisi 2</label>
       <textarea name="alasan2" rows="3" required></textarea>
+
+      <label>Upload KRS (jpg/png/pdf)</label>
+      <input type="file" name="krs" accept=".jpg,.jpeg,.png,.pdf" required>
 
       <button type="submit" class="btn-primary">Kirim Pendaftaran 🎁</button>
       <p id="quotaStatus" class="quota"></p>
