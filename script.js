@@ -9,9 +9,11 @@ const firebaseConfig = {
   appId: "1:662210467099:web:8c5c61d5d9598498fd6fbe"
 };
 
+// === INIT FIREBASE ===
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 const MAX_QUOTA = 34;
+
 const form = document.getElementById("regForm");
 const quotaStatus = document.getElementById("quotaStatus");
 
@@ -31,6 +33,7 @@ function checkQuota() {
 // === SUBMIT FORM ===
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+
   const formData = new FormData(form);
   const file = formData.get("krs");
 
@@ -42,46 +45,43 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  // === UPLOAD FILE KRS KE GOOGLE DRIVE VIA APPS SCRIPT ===
-  const uploadResponse = await fetch("https://script.google.com/macros/s/AKfycbwSkGGCxvoJcqii47M58rjo3InhWWTY3Y5PqmYp2Yfx2x-yTSk8wfI9F657O2kSxo3EKQ/exec", {
-    method: "POST",
-    body: formData,
-  });
+  // Upload ke Google Apps Script (Drive)
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwSkGGCxvoJcqii47M58rjo3InhWWTY3Y5PqmYp2Yfx2x-yTSk8wfI9F657O2kSxo3EKQ/exec";
+  const uploadData = new FormData();
+  uploadData.append("file", file);
 
-  const uploadResult = await uploadResponse.json();
-  if (!uploadResult.success) {
-    alert("Upload KRS gagal. Coba lagi ya!");
-    return;
+  try {
+    const res = await fetch(scriptURL, { method: "POST", body: uploadData });
+    const fileURL = await res.text();
+
+    const data = Object.fromEntries(formData.entries());
+    data.krsURL = fileURL.trim();
+
+    await db.ref("pendaftar").push(data);
+    alert("🎉 Pendaftaran berhasil dikirim!");
+    form.reset();
+    checkQuota();
+  } catch (err) {
+    console.error("Gagal kirim:", err);
+    alert("Gagal kirim data, coba lagi ya!");
   }
-
-  // === SIMPAN DATA KE FIREBASE ===
-  const data = Object.fromEntries(formData.entries());
-  data.krsURL = uploadResult.fileUrl; // link dari Google Drive
-
-  await db.ref("pendaftar").push(data);
-  alert("🎉 Pendaftaran berhasil dikirim!");
-  form.reset();
-  checkQuota();
 });
 
-// === SCROLL BUTTON ===
+// === SCROLL EFFECT ===
 document.querySelector(".scroll-btn").addEventListener("click", (e) => {
   e.preventDefault();
   document.querySelector("#form").scrollIntoView({ behavior: "smooth" });
 });
 
-// === SNOW EFFECT ===
+// === EFEK SALJU ===
 const canvas = document.getElementById("snow");
 const ctx = canvas.getContext("2d");
 let width = (canvas.width = window.innerWidth);
 let height = (canvas.height = window.innerHeight);
-const flakes = Array.from({ length: 80 }, () => ({
-  x: Math.random() * width,
-  y: Math.random() * height,
-  r: Math.random() * 3 + 1,
-  d: Math.random() + 1
-}));
-
+const flakes = [];
+for (let i = 0; i < 80; i++) {
+  flakes.push({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 3 + 1, d: Math.random() + 1 });
+}
 let angle = 0;
 function drawSnow() {
   ctx.clearRect(0, 0, width, height);
@@ -108,5 +108,5 @@ window.addEventListener("resize", () => {
   height = canvas.height = window.innerHeight;
 });
 
-// === MULAI ===
+// === START ===
 checkQuota();
