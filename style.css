@@ -1,10 +1,137 @@
-/* Tombol bantuan kecil */
+/* ==== GLOBAL ==== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fdf6f0;
+  color: #222;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ==== HERO SECTION ==== */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 120px 20px;
+  color: white;
+  background: url("https://i.imgur.com/nkYkI9K.jpg") center/cover no-repeat;
+  font-family: "Mountains of Christmas", cursive;
+}
+.hero .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+}
+.hero h1, .hero h2, .hero p, .btn-primary {
+  position: relative;
+  z-index: 2;
+}
+.hero h1 {
+  font-size: 3rem;
+}
+.hero h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+/* ==== BUTTON ==== */
+.btn-primary {
+  display: inline-block;
+  background: #e63946;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.btn-primary:hover {
+  background: #c71f30;
+}
+
+/* ==== SECTION ==== */
+section {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #e63946;
+}
+
+/* ==== DIVISIONS ==== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.card h3 {
+  color: #e63946;
+  margin-bottom: 10px;
+}
+
+/* ==== FORM ==== */
+.form-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.form-section label {
+  font-weight: 600;
+}
+input, select, textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+}
+textarea {
+  resize: vertical;
+}
+.quota {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #e63946;
+}
+
+/* ==== FOOTER ==== */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #222;
+  color: white;
+  font-size: 0.9rem;
+}
+
+/* ==== DRIVE INPUT ==== */
 .drive-input {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
 .help-btn {
   background: #e63946;
   color: white;
@@ -20,7 +147,7 @@
   background: #c71f30;
 }
 
-/* Modal popup */
+/* ==== MODAL ==== */
 .modal {
   display: none;
   position: fixed;
@@ -31,7 +158,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .modal-content {
   background: #fff8f0;
   padding: 20px 30px;
@@ -41,19 +167,16 @@
   text-align: left;
   font-size: 0.95rem;
 }
-
 .modal-content h3 {
   color: #e63946;
   margin-bottom: 10px;
 }
-
 .modal-content code {
   background: #eee;
   padding: 3px 6px;
   border-radius: 6px;
   display: inline-block;
 }
-
 #closeModal {
   float: right;
   font-size: 20px;
@@ -62,4 +185,13 @@
 }
 #closeModal:hover {
   color: #e63946;
+}
+
+/* ==== SALJU ==== */
+canvas#snow {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
 }
