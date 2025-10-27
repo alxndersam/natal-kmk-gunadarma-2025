@@ -11,8 +11,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
+const storage = firebase.storage();
 
-// === KUOTA ===
 const MAX_QUOTA = 34;
 const form = document.getElementById("regForm");
 const quotaStatus = document.getElementById("quotaStatus");
@@ -29,21 +29,50 @@ function checkQuota() {
   });
 }
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const data = Object.fromEntries(new FormData(form).entries());
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+  const file = formData.get("krs");
 
-  db.ref("pendaftar").once("value", (snapshot) => {
-    const count = snapshot.numChildren();
-    if (count >= MAX_QUOTA) {
-      quotaStatus.textContent = "❌ Maaf, kuota sudah penuh.";
-      return;
+  // Cek kuota dulu
+  const snapshot = await db.ref("pendaftar").once("value");
+  const count = snapshot.numChildren();
+  if (count >= MAX_QUOTA) {
+    quotaStatus.textContent = "❌ Maaf, kuota sudah penuh.";
+    return;
+  }
+
+  // Upload file KRS ke Firebase Storage
+  const storageRef = storage.ref("krs/" + Date.now() + "_" + file.name);
+  const uploadTask = storageRef.put(file);
+
+  uploadTask.on(
+    "state_changed",
+    null,
+    (error) => {
+      console.error("Upload gagal:", error);
+      alert("Upload gagal. Coba lagi ya!");
+    },
+    async () => {
+      const fileURL = await uploadTask.snapshot.ref.getDownloadURL();
+      data.krsURL = fileURL;
+
+      // Simpan ke Realtime Database
+      await db.ref("pendaftar").push(data);
+
+      // Kirim ke Formspree
+      fetch("https://formspree.io/f/2857088604037970997", {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: new URLSearchParams(data),
+      });
+
+      alert("🎉 Pendaftaran berhasil dikirim!");
+      form.reset();
+      checkQuota();
     }
-
-    db.ref("pendaftar").push(data);
-    form.submit(); // kirim juga ke Formspree
-    alert("🎉 Pendaftaran berhasil! Terima kasih sudah bergabung!");
-  });
+  );
 });
 
 checkQuota();
