@@ -1,196 +1,137 @@
-/* === FONT & BASE === */
-html {
-  scroll-behavior: smooth;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
   font-family: 'Poppins', sans-serif;
   background-color: #fff8f0;
   color: #333;
   overflow-x: hidden;
 }
 
-h1, h2, h3 {
-  font-family: 'Mountains of Christmas', cursive;
-  color: #b80000;
-  text-align: center;
-}
-
-p {
-  line-height: 1.6;
-  text-align: center;
-}
-
-/* === HERO SECTION === */
 .hero {
-  position: relative;
-  height: 100vh;
-  background: url('https://images.unsplash.com/photo-1608889175109-25c8b1a88e2c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background: url('https://images.unsplash.com/photo-1607604276583-eef5d95bdb40?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
   color: white;
-  text-shadow: 0 3px 6px rgba(0,0,0,0.5);
-  z-index: 1;
+  text-align: center;
+  padding: 120px 20px;
+  position: relative;
 }
 
 .hero .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.45);
-  z-index: 0;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
 }
 
-.hero h1, .hero h2, .hero p, .hero a {
+.hero h1, .hero h2, .hero p {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero h1 {
+  font-family: 'Mountains of Christmas', cursive;
   font-size: 3rem;
-  margin-bottom: 0.3em;
 }
 
 .hero h2 {
-  font-size: 1.8rem;
-  margin-bottom: 0.2em;
+  margin: 10px 0;
+  font-size: 1.6rem;
 }
 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 1.5em;
-}
-
-/* === BUTTONS === */
 .btn-primary {
-  background-color: #d62828;
+  display: inline-block;
+  background: #e63946;
   color: white;
-  padding: 12px 28px;
-  border-radius: 8px;
+  padding: 10px 25px;
+  margin-top: 20px;
+  border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
   transition: 0.3s;
-  display: inline-block;
-  border: none;
   cursor: pointer;
+  position: relative;
+  z-index: 2;
 }
-
 .btn-primary:hover {
-  background-color: #e63946;
+  background: #c71f30;
   transform: scale(1.05);
 }
 
-/* === ABOUT SECTION === */
-.about {
+section {
   padding: 60px 20px;
-  background-color: #fff3e0;
-  border-top: 5px solid #b80000;
-  border-bottom: 5px solid #b80000;
+  text-align: center;
 }
 
-.about h2 {
-  margin-bottom: 20px;
-}
-
-/* === DIVISIONS === */
-.divisions {
-  padding: 60px 20px;
-  background-color: #ffe8e8;
-}
-
-.divisions h2 {
-  margin-bottom: 30px;
+.about p {
+  max-width: 700px;
+  margin: 20px auto;
+  line-height: 1.6;
 }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-  max-width: 900px;
-  margin: auto;
+  margin-top: 30px;
 }
 
 .card {
-  background-color: white;
-  border-radius: 12px;
+  background: #fff;
+  border: 2px solid #e63946;
+  border-radius: 15px;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: 0.3s;
 }
-
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  background: #fff0f0;
 }
 
-/* === FORM SECTION === */
-.form-section {
-  padding: 60px 20px;
-  background-color: #fffaf6;
-}
-
-.form-section h2 {
-  margin-bottom: 30px;
-}
-
-form {
-  max-width: 600px;
-  margin: auto;
+.form-section form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-}
-
-label {
-  font-weight: 600;
+  max-width: 450px;
+  margin: 0 auto;
   text-align: left;
 }
 
+label {
+  margin-top: 15px;
+  font-weight: 600;
+}
+
 input, select, textarea {
+  margin-top: 8px;
   padding: 10px;
-  border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: 1rem;
-  font-family: 'Poppins', sans-serif;
+  border-radius: 10px;
+  font-family: inherit;
 }
 
-input:focus, select:focus, textarea:focus {
-  border-color: #d62828;
-  outline: none;
-  box-shadow: 0 0 6px rgba(214,40,40,0.4);
+button {
+  margin-top: 20px;
+  cursor: pointer;
 }
 
-textarea {
-  resize: vertical;
-}
-
-button[type="submit"] {
-  margin-top: 10px;
+footer {
+  background: #e63946;
+  color: white;
+  padding: 25px;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 0.9rem;
 }
 
 .quota {
   text-align: center;
-  font-weight: bold;
-  color: #b80000;
   margin-top: 10px;
+  font-weight: 600;
+  color: #c71f30;
 }
 
-/* === FOOTER === */
-footer {
-  text-align: center;
-  padding: 25px;
-  background-color: #b80000;
-  color: white;
-  font-size: 0.9rem;
-}
-
-/* === SNOW EFFECT (canvas) === */
 #snow {
   position: fixed;
   top: 0;
@@ -198,26 +139,4 @@ footer {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 0;
-}
-
-/* === Z-INDEX FIX (biar tombol bisa diklik) === */
-.hero, .about, .divisions, .form-section, footer {
-  position: relative;
-  z-index: 1;
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-
-  .hero h2 {
-    font-size: 1.4rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
 }
