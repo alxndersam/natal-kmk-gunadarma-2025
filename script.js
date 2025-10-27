@@ -11,16 +11,16 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// === BATAS KUOTA ===
+// === KUOTA ===
 const MAX_QUOTA = 34;
-const quotaStatus = document.getElementById("quotaStatus");
 const form = document.getElementById("regForm");
+const quotaStatus = document.getElementById("quotaStatus");
 
 function checkQuota() {
   db.ref("pendaftar").once("value", (snapshot) => {
     const count = snapshot.numChildren();
     if (count >= MAX_QUOTA) {
-      quotaStatus.textContent = "❌ Pendaftaran sudah ditutup (kuota penuh)";
+      quotaStatus.textContent = "❌ Pendaftaran sudah ditutup (Kuota penuh)";
       form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
     } else {
       quotaStatus.textContent = `Kuota tersisa: ${MAX_QUOTA - count} panitia`;
@@ -28,7 +28,6 @@ function checkQuota() {
   });
 }
 
-// Simpan data setelah submit
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const data = Object.fromEntries(new FormData(form).entries());
