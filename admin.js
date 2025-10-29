@@ -49,7 +49,7 @@ logoutBtn.addEventListener("click", () => {
 function loadData() {
   tableBody.innerHTML = "<tr><td colspan='11'>⏳ Memuat data...</td></tr>";
 
-  db.ref("pendaftaran").once("value")
+  db.ref("pendaftar").once("value")
     .then(snapshot => {
       const data = snapshot.val();
       if (!data) {
