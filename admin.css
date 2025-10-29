@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(90deg, #b31217, #2d6a4f);
+  color: white;
+  min-height: 100vh;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Login Screen */
+.login-container {
+  text-align: center;
+  margin-top: 150px;
+}
+
+.login-container input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  width: 220px;
+  margin-top: 10px;
+}
+
+.login-container button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #2d6a4f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-container button:hover {
+  background-color: #1b4332;
+}
+
+#login-error {
+  color: #ffcccc;
+  margin-top: 10px;
+}
+
+/* Admin Panel */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+header h1 {
+  font-size: 1.6rem;
+}
+
+.actions button {
+  margin-left: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #2d6a4f;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.actions button:hover {
+  background-color: #1b4332;
+}
+
+section {
+  padding: 30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  text-align: left;
+  color: #fff;
+  vertical-align: top;
+}
+
+th {
+  background: rgba(0,0,0,0.3);
+  font-weight: 600;
+}
+
+tr:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+a {
+  color: #a3e635;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  table {
+    font-size: 0.8rem;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+}
