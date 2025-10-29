@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - KMK Natal 2025</title>
+  <link rel="stylesheet" href="admin.css">
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+  <script defer src="admin.js"></script>
+</head>
+<body>
+  <div id="login-screen" class="login-container">
+    <h2>🔒 Admin Panel</h2>
+    <p>Masukkan password untuk melanjutkan</p>
+    <input type="password" id="admin-pass" placeholder="Password...">
+    <button id="login-btn">Masuk</button>
+    <p id="login-error"></p>
+  </div>
+
+  <div id="admin-panel" class="hidden">
+    <header>
+      <h1>📋 Data Pendaftar Natal KMK 2025</h1>
+      <div class="actions">
+        <button id="refresh">🔄 Refresh Data</button>
+        <button id="download">⬇️ Download CSV</button>
+        <button id="logout">🚪 Logout</button>
+      </div>
+    </header>
+
+    <section>
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Lengkap</th>
+            <th>NPM</th>
+            <th>Prodi</th>
+            <th>Angkatan</th>
+            <th>Region</th>
+            <th>Divisi 1</th>
+            <th>Alasan 1</th>
+            <th>Divisi 2</th>
+            <th>Alasan 2</th>
+            <th>Link KRS</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <tr><td colspan="11">Memuat data...</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</body>
+</html>
