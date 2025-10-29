@@ -140,6 +140,33 @@ form .btn-primary:hover {
   line-height: 1.6;
 }
 
+.tutorial-hp {
+  margin-top: 30px;
+  background: rgba(255,255,255,0.08);
+}
+
+.tutorial-hp h3 {
+  color: #ffaaaa;
+}
+
+.tutorial-hp ol li::marker {
+  color: #ffb3b3;
+}
+
+@media (max-width: 768px) {
+  .tutorial, .tutorial-hp {
+    width: 90%;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .tutorial ol, .tutorial-hp ol {
+    padding-left: 20px;
+  }
+  .tutorial h3, .tutorial-hp h3 {
+    font-size: 1.1rem;
+  }
+}
+
 footer {
   text-align: center;
   background: rgba(0,0,0,0.5);
