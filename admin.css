@@ -1,129 +1,159 @@
 body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: linear-gradient(90deg, #b31217, #2d6a4f);
-  color: white;
-  min-height: 100vh;
+  color: #fff;
+  margin: 0;
+  padding: 0;
 }
 
+/* LOGIN */
+#login-screen {
+  text-align: center;
+  margin-top: 15%;
+}
+#login-screen input {
+  padding: 10px;
+  width: 250px;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 10px;
+}
+#login-btn {
+  padding: 10px 20px;
+  background: #2d6a4f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+#login-btn:hover {
+  background: #1b4332;
+}
+.error {
+  color: #ffc9c9;
+}
+
+/* PANEL */
 .hidden {
   display: none;
 }
 
-/* Login Screen */
-.login-container {
-  text-align: center;
-  margin-top: 150px;
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
 }
-
-.login-container input {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  width: 220px;
-  margin-top: 10px;
+header h2 {
+  margin: 0;
 }
-
-.login-container button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #2d6a4f;
-  color: white;
+.controls button {
+  margin-left: 8px;
+  background: #2d6a4f;
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
+  padding: 8px 12px;
   cursor: pointer;
   transition: 0.3s;
 }
-
-.login-container button:hover {
-  background-color: #1b4332;
+.controls button:hover {
+  background: #1b4332;
 }
-
-#login-error {
-  color: #ffcccc;
-  margin-top: 10px;
-}
-
-/* Admin Panel */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-
-header h1 {
-  font-size: 1.6rem;
-}
-
-.actions button {
-  margin-left: 10px;
-  padding: 10px 15px;
+.controls input {
+  padding: 8px;
+  border-radius: 6px;
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background-color: #2d6a4f;
-  color: white;
-  transition: all 0.3s ease;
 }
 
-.actions button:hover {
-  background-color: #1b4332;
+/* TABLE */
+.table-container {
+  overflow-x: auto;
+  padding: 10px 20px;
 }
-
-section {
-  padding: 30px;
-}
-
 table {
   width: 100%;
   border-collapse: collapse;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(5px);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
   overflow: hidden;
 }
-
 th, td {
-  padding: 12px 15px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   text-align: left;
-  color: #fff;
-  vertical-align: top;
 }
-
 th {
-  background: rgba(0,0,0,0.3);
-  font-weight: 600;
+  background: rgba(0, 0, 0, 0.3);
 }
-
-tr:hover {
-  background: rgba(255,255,255,0.1);
-}
-
 a {
-  color: #a3e635;
+  color: #9ef7c6;
   text-decoration: none;
 }
 a:hover {
   text-decoration: underline;
 }
 
-/* Responsif untuk HP */
+/* BUTTONS */
+.delete-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.delete-btn:hover {
+  background: #b02a37;
+}
+.editable {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 4px;
+}
+
+/* TOAST */
+#toast {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 12px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 14px;
+}
+#toast.show {
+  visibility: visible;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+@keyframes fadein {
+  from { bottom: 0; opacity: 0; }
+  to { bottom: 30px; opacity: 1; }
+}
+@keyframes fadeout {
+  from { bottom: 30px; opacity: 1; }
+  to { bottom: 0; opacity: 0; }
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
-    text-align: center;
+    align-items: flex-start;
   }
-
+  .controls {
+    margin-top: 10px;
+  }
   table {
-    font-size: 0.8rem;
-  }
-
-  th, td {
-    padding: 8px;
+    font-size: 0.85rem;
   }
 }
