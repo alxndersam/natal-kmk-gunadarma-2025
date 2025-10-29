@@ -49,37 +49,35 @@ logoutBtn.addEventListener("click", () => {
 function loadData() {
   tableBody.innerHTML = "<tr><td colspan='11'>⏳ Memuat data...</td></tr>";
 
-  db.ref("pendaftar").once("value")
-    .then(snapshot => {
-      const data = snapshot.val();
-      if (!data) {
-        tableBody.innerHTML = "<tr><td colspan='11'>Belum ada data pendaftar.</td></tr>";
-        return;
-      }
+  db.ref("pendaftar").on("value", (snapshot) => {
+    const data = snapshot.val();
+    if (!data) {
+      tableBody.innerHTML = "<tr><td colspan='11'>Belum ada data pendaftar.</td></tr>";
+      return;
+    }
 
-      const rows = Object.values(data);
-      tableBody.innerHTML = "";
-      rows.forEach((item, i) => {
-        const row = `
-          <tr>
-            <td>${i + 1}</td>
-            <td>${item.nama || ""}</td>
-            <td>${item.npm || ""}</td>
-            <td>${item.prodi || ""}</td>
-            <td>${item.angkatan || ""}</td>
-            <td>${item.region || ""}</td>
-            <td>${item.divisi1 || ""}</td>
-            <td>${item.alasan1 || ""}</td>
-            <td>${item.divisi2 || ""}</td>
-            <td>${item.alasan2 || ""}</td>
-            <td><a href="${item.krsURL}" target="_blank">Lihat KRS</a></td>
-          </tr>`;
-        tableBody.insertAdjacentHTML("beforeend", row);
-      });
-    })
-    .catch(err => {
-      tableBody.innerHTML = `<tr><td colspan="11">❌ Gagal memuat data: ${err.message}</td></tr>`;
+    const rows = Object.values(data);
+    tableBody.innerHTML = "";
+    rows.forEach((item, i) => {
+      const row = `
+        <tr>
+          <td>${i + 1}</td>
+          <td>${item.nama || ""}</td>
+          <td>${item.npm || ""}</td>
+          <td>${item.prodi || ""}</td>
+          <td>${item.angkatan || ""}</td>
+          <td>${item.region || ""}</td>
+          <td>${item.divisi1 || ""}</td>
+          <td>${item.alasan1 || ""}</td>
+          <td>${item.divisi2 || ""}</td>
+          <td>${item.alasan2 || ""}</td>
+          <td><a href="${item.krsURL || '#'}" target="_blank">Lihat KRS</a></td>
+        </tr>`;
+      tableBody.insertAdjacentHTML("beforeend", row);
     });
+  }, (error) => {
+    tableBody.innerHTML = `<tr><td colspan='11'>❌ Gagal memuat data: ${error.message}</td></tr>`;
+  });
 }
 
 // Tombol Refresh
@@ -87,7 +85,7 @@ refreshBtn.addEventListener("click", loadData);
 
 // === Download CSV ===
 downloadBtn.addEventListener("click", () => {
-  db.ref("pendaftaran").once("value")
+  db.ref("pendaftar").once("value") // ✅ pakai node yang benar
     .then(snapshot => {
       const data = snapshot.val();
       if (!data) return alert("Belum ada data untuk diunduh.");
@@ -106,5 +104,6 @@ downloadBtn.addEventListener("click", () => {
       document.body.appendChild(a);
       a.click();
       a.remove();
-    });
+    })
+    .catch(err => alert("❌ Gagal mengunduh data: " + err.message));
 });
