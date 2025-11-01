@@ -3,29 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel Panitia Natal 2025 🎄</title>
+  <title>Admin Panel | KMK Natal 2025</title>
   <link rel="stylesheet" href="admin.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
 <body>
   <div id="login-screen">
-    <h2>🔒 Admin Login</h2>
-    <input type="password" id="admin-pass" placeholder="Masukkan Password Admin">
-    <br>
+    <h1>🎄 Admin KMK Natal 2025 🎄</h1>
+    <p>Masukkan password untuk melanjutkan</p>
+    <input type="password" id="admin-pass" placeholder="Password admin">
     <button id="login-btn">Masuk</button>
     <p id="login-error" class="error"></p>
   </div>
 
   <div id="admin-panel" class="hidden">
     <header>
-      <h2>🎄 Admin Panel Panitia Natal 2025 🎄</h2>
+      <h2>📋 Data Pendaftar KMK Natal 2025</h2>
       <div class="controls">
-        <input type="text" id="search" placeholder="Cari nama / NPM / telp...">
-        <button id="refresh">🔁 Muat Ulang</button>
-        <button id="download">⬇️ Unduh CSV</button>
-        <button id="logout">🚪 Logout</button>
+        <button id="reloadBtn">🔄 Muat Ulang</button>
+        <button id="downloadCSV">⬇️ Unduh CSV</button>
+        <button id="logoutBtn">🚪 Logout</button>
       </div>
     </header>
 
@@ -38,26 +36,25 @@
             <th>NPM</th>
             <th>Prodi</th>
             <th>Angkatan</th>
-            <th>Nomor Telp</th>
+            <th>Telepon</th>
             <th>Region</th>
             <th>Divisi 1</th>
             <th>Alasan 1</th>
             <th>Divisi 2</th>
             <th>Alasan 2</th>
-            <th>Link KRS</th>
+            <th>KRS</th>
             <th>Aksi</th>
           </tr>
         </thead>
-        <tbody id="table-body"></tbody>
+        <tbody id="data-body">
+          <tr><td colspan="13">⏳ Memuat data...</td></tr>
+        </tbody>
       </table>
     </div>
-
-    <footer>
-      <p>© 2025 KMK Universitas Gunadarma</p>
-    </footer>
   </div>
 
   <div id="toast"></div>
+
   <script src="admin.js"></script>
 </body>
 </html>
