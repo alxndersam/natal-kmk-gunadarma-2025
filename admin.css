@@ -1,78 +1,37 @@
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  background: linear-gradient(90deg, #1b4332, #b31217);
-  color: white;
-  overflow-x: auto;
-}
+/* admin.css - tema natal elegan, responsive */
+body { font-family: 'Poppins', sans-serif; margin:0; background: linear-gradient(90deg,#b31217,#2d6a4f); color:#fff; }
+.centered { text-align:center; padding: 60px 20px; }
+#admin-panel { display:block; }
 
-header {
-  text-align: center;
-  padding: 25px 15px;
-  background: rgba(0, 0, 0, 0.3);
-  position: sticky;
-  top: 0;
-}
+/* header */
+header { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:18px 20px; background:rgba(0,0,0,0.18); }
+header h2 { margin:0; font-size:1.2rem; }
+.controls { display:flex; gap:8px; align-items:center; }
+.controls input { padding:8px; border-radius:6px; border:none; min-width:180px; }
+.controls button { padding:8px 12px; border-radius:6px; border:none; background:#2d6a4f; color:#fff; cursor:pointer; }
 
-header h1 {
-  margin: 0;
-  font-size: 1.8rem;
-}
+/* table */
+.table-container { padding: 12px 18px; overflow-x:auto; }
+table { width:100%; border-collapse:collapse; background: rgba(255,255,255,0.06); border-radius:8px; overflow:hidden; }
+th, td { padding:10px 8px; border-bottom:1px solid rgba(255,255,255,0.08); text-align:left; white-space:nowrap; }
+th { background: rgba(0,0,0,0.25); font-weight:700; }
+td a { color:#9ef7c6; text-decoration:none; }
 
-#downloadCSV {
-  margin-top: 15px;
-  background: #40916c;
-  border: none;
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-}
-#downloadCSV:hover {
-  background: #1b4332;
-}
+/* buttons */
+.delete-btn, .controls button { background:#e63946; border:none; color:#fff; border-radius:6px; padding:6px 10px; cursor:pointer; }
+.delete-btn { background:#e63946; }
+.delete-btn:hover { background:#b02a37; }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 25px auto;
-  background: rgba(255, 255, 255, 0.1);
-}
+/* toast */
+#toast { visibility:hidden; position:fixed; left:50%; bottom:30px; transform:translateX(-50%); background:rgba(0,0,0,0.85); padding:10px 14px; border-radius:8px; color:#fff; z-index:9999; }
+#toast.show { visibility:visible; animation:fadein .4s, fadeout .4s 2.6s; }
+@keyframes fadein { from {opacity:0; bottom:20px;} to {opacity:1; bottom:30px;} }
+@keyframes fadeout { to {opacity:0; bottom:20px;} }
 
-th, td {
-  padding: 10px 12px;
-  text-align: left;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-}
-
-th {
-  background: rgba(255,255,255,0.15);
-  text-transform: uppercase;
-  font-size: 0.9rem;
-}
-
-td a {
-  color: #ffd166;
-}
-
-button.deleteBtn {
-  background: #e63946;
-  border: none;
-  color: white;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-button.deleteBtn:hover {
-  background: #a4161a;
-}
-
-@media (max-width: 768px) {
-  table {
-    font-size: 0.8rem;
-    overflow-x: scroll;
-    display: block;
-  }
+/* responsive */
+@media (max-width:768px) {
+  header { flex-direction:column; align-items:flex-start; gap:10px; }
+  .controls input { min-width: 120px; width:100%; }
+  table { font-size:0.85rem; display:block; }
+  th, td { padding:8px 6px; }
 }
