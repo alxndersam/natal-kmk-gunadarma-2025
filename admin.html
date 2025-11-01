@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Panel - KMK Natal 2025</title>
-  <link rel="stylesheet" href="admin.css">
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <link rel="stylesheet" href="admin.css" />
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+  <script defer src="admin.js"></script>
 </head>
 <body>
-  <div id="login-screen">
-    <h2>Login Admin</h2>
-    <input type="password" id="admin-pass" placeholder="Masukkan password admin">
-    <br>
-    <button id="login-btn">Masuk</button>
+  <!-- Login Screen -->
+  <div id="login-screen" class="centered">
+    <h2>🔒 Admin Panel KMK Natal 2025</h2>
+    <input type="password" id="admin-pass" placeholder="Masukkan password admin" />
+    <div style="height:8px;"></div>
+    <button id="login-btn">Login</button>
     <p id="login-error" class="error"></p>
   </div>
 
+  <!-- Admin Panel -->
   <div id="admin-panel" class="hidden">
     <header>
-      <h2>📋 Data Pendaftar Natal KMK 2025</h2>
+      <h2>📋 Data Pendaftar</h2>
       <div class="controls">
-        <button id="refresh">🔄 Refresh</button>
-        <button id="download">⬇️ Download CSV</button>
+        <input type="text" id="search" placeholder="Cari nama / NPM..." />
+        <button id="refresh">🔄 Muat Ulang</button>
+        <button id="download">⬇️ Unduh CSV</button>
         <button id="logout">🚪 Logout</button>
       </div>
     </header>
@@ -37,7 +41,7 @@
             <th>Prodi</th>
             <th>Angkatan</th>
             <th>Region</th>
-            <th>No Telp</th>
+            <th>No. Telp</th>
             <th>Divisi 1</th>
             <th>Alasan 1</th>
             <th>Divisi 2</th>
@@ -46,11 +50,13 @@
             <th>Aksi</th>
           </tr>
         </thead>
-        <tbody id="table-body"></tbody>
+        <tbody id="table-body">
+          <tr><td colspan="13">⏳ Memuat data...</td></tr>
+        </tbody>
       </table>
     </div>
   </div>
 
-  <script src="admin.js"></script>
+  <div id="toast"></div>
 </body>
 </html>
