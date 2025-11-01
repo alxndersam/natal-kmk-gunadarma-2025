@@ -1,4 +1,5 @@
-// === Konfigurasi Firebase ===
+// admin.js
+// Firebase config - gunakan data yang udah lo kasih
 const firebaseConfig = {
   apiKey: "AIzaSyBwZNBcA78NJQUzUA-D1QaxblnrSKwQUhM",
   authDomain: "kmk-natal-2025.firebaseapp.com",
@@ -11,6 +12,7 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
+const NODE = "pendaftar"; // pastikan node ini sesuai di Firebase
 
 // DOM
 const loginScreen = document.getElementById("login-screen");
@@ -19,139 +21,183 @@ const loginBtn = document.getElementById("login-btn");
 const logoutBtn = document.getElementById("logout");
 const refreshBtn = document.getElementById("refresh");
 const downloadBtn = document.getElementById("download");
-const searchInput = document.getElementById("search");
 const tableBody = document.getElementById("table-body");
-const errorText = document.getElementById("login-error");
+const loginError = document.getElementById("login-error");
+const searchInput = document.getElementById("search");
 const toastEl = document.getElementById("toast");
 
 const ADMIN_PASS = "kmknatal2025";
-let allData = {};
+let allData = {}; // cache
+
+// helper toast
+function showToast(msg){
+  toastEl.textContent = msg;
+  toastEl.style.display = "block";
+  toastEl.style.opacity = "1";
+  setTimeout(()=>{ toastEl.style.transition = "opacity 0.4s"; toastEl.style.opacity = "0"; }, 2200);
+  setTimeout(()=>{ toastEl.style.display = "none"; toastEl.style.transition = ""; }, 2600);
+}
 
 // login
 loginBtn.addEventListener("click", () => {
-  const pass = document.getElementById("admin-pass").value.trim();
-  if (pass === ADMIN_PASS) {
+  const pass = document.getElementById("admin-pass").value || "";
+  if (pass.trim() === ADMIN_PASS) {
     loginScreen.classList.add("hidden");
     adminPanel.classList.remove("hidden");
-    showToast("Login berhasil ✅");
     loadData();
+    showToast("Login berhasil ✅");
   } else {
-    errorText.textContent = "❌ Password salah!";
+    loginError.textContent = "❌ Password salah!";
+    setTimeout(()=> loginError.textContent = "", 3000);
   }
 });
 
 // logout
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", () => {
-    adminPanel.classList.add("hidden");
-    loginScreen.classList.remove("hidden");
-    document.getElementById("admin-pass").value = "";
-  });
-}
+logoutBtn.addEventListener("click", () => {
+  adminPanel.classList.add("hidden");
+  loginScreen.classList.remove("hidden");
+  document.getElementById("admin-pass").value = "";
+  showToast("Logout sukses");
+});
 
-// load data (realtime)
-function loadData() {
+// load data (real-time)
+function loadData(){
   tableBody.innerHTML = "<tr><td colspan='13'>⏳ Memuat data...</td></tr>";
-  db.ref("pendaftar").on("value", snapshot => {
-    const data = snapshot.val() || {};
-    allData = data;
-    renderTable(data);
+  db.ref(NODE).on("value", snapshot => {
+    const data = snapshot.val();
+    allData = data || {};
+    renderTable(allData);
   }, err => {
-    tableBody.innerHTML = `<tr><td colspan='13'>❌ Error: ${err.message}</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="13">❌ Gagal memuat data: ${err.message}</td></tr>`;
   });
 }
 
-function renderTable(data) {
+// render table from object
+function renderTable(dataObj){
   tableBody.innerHTML = "";
-  const entries = Object.entries(data || {});
+  const entries = Object.entries(dataObj || {});
   if (entries.length === 0) {
     tableBody.innerHTML = "<tr><td colspan='13'>Belum ada data pendaftar.</td></tr>";
     return;
   }
 
-  entries.forEach(([key, item], i) => {
-    const row = document.createElement("tr");
-    row.dataset.id = key;
-    row.innerHTML = `
-      <td>${i+1}</td>
-      <td contenteditable="true" class="editable" data-field="nama">${item.nama || ""}</td>
-      <td contenteditable="true" class="editable" data-field="npm">${item.npm || ""}</td>
-      <td contenteditable="true" class="editable" data-field="prodi">${item.prodi || ""}</td>
-      <td contenteditable="true" class="editable" data-field="angkatan">${item.angkatan || ""}</td>
-      <td contenteditable="true" class="editable" data-field="region">${item.region || ""}</td>
-      <td contenteditable="true" class="editable" data-field="telepon">${item.telepon || ""}</td>
-      <td contenteditable="true" class="editable" data-field="divisi1">${item.divisi1 || ""}</td>
-      <td contenteditable="true" class="editable" data-field="alasan1">${item.alasan1 || ""}</td>
-      <td contenteditable="true" class="editable" data-field="divisi2">${item.divisi2 || ""}</td>
-      <td contenteditable="true" class="editable" data-field="alasan2">${item.alasan2 || ""}</td>
-      <td><a href="${item.krsURL || '#'}" target="_blank">Lihat</a></td>
-      <td><button class="delete-btn" data-id="${key}">Hapus</button></td>
+  entries.forEach(([key, item], idx) => {
+    const nama = item.nama || "";
+    const npm = item.npm || "";
+    const prodi = item.prodi || "";
+    const angkatan = item.angkatan || "";
+    const telp = item.telp || item.nomorTelp || item.nomor_telpon || item.nomor_tel || "";
+    const region = item.region || "";
+    const div1 = item.divisi1 || item.divisi_1 || "";
+    const alasan1 = item.alasan1 || "";
+    const div2 = item.divisi2 || item.divisi_2 || "";
+    const alasan2 = item.alasan2 || "";
+    const krs = item.krsURL || item.krs || "";
+
+    const tr = document.createElement("tr");
+    tr.dataset.id = key;
+    tr.innerHTML = `
+      <td>${idx+1}</td>
+      <td contenteditable="true" class="editable" data-field="nama">${escapeHtml(nama)}</td>
+      <td contenteditable="true" class="editable" data-field="npm">${escapeHtml(npm)}</td>
+      <td contenteditable="true" class="editable" data-field="prodi">${escapeHtml(prodi)}</td>
+      <td contenteditable="true" class="editable" data-field="angkatan">${escapeHtml(angkatan)}</td>
+      <td contenteditable="true" class="editable" data-field="telp">${escapeHtml(telp)}</td>
+      <td contenteditable="true" class="editable" data-field="region">${escapeHtml(region)}</td>
+      <td contenteditable="true" class="editable" data-field="divisi1">${escapeHtml(div1)}</td>
+      <td contenteditable="true" class="editable" data-field="alasan1">${escapeHtml(alasan1)}</td>
+      <td contenteditable="true" class="editable" data-field="divisi2">${escapeHtml(div2)}</td>
+      <td contenteditable="true" class="editable" data-field="alasan2">${escapeHtml(alasan2)}</td>
+      <td><a class="table-link" href="${krs}" target="_blank" rel="noopener">Link</a></td>
+      <td><button class="delete-btn" title="Hapus">🗑️</button></td>
     `;
-    tableBody.appendChild(row);
+    tableBody.appendChild(tr);
   });
 
-  // attach delete handlers
+  attachRowHandlers();
+}
+
+// attach delete + edit handlers
+function attachRowHandlers(){
+  // delete
   document.querySelectorAll(".delete-btn").forEach(btn => {
-    btn.addEventListener("click", e => {
-      const id = e.currentTarget.dataset.id;
-      if (confirm("Yakin ingin menghapus data ini?")) {
-        db.ref("pendaftar/" + id).remove()
-          .then(() => showToast("Data dihapus ✅"))
-          .catch(err => showToast("Gagal hapus: " + err.message));
+    btn.onclick = async (e) => {
+      const tr = e.target.closest("tr");
+      const id = tr.dataset.id;
+      if (!confirm("Yakin mau hapus data ini?")) return;
+      try {
+        await db.ref(`${NODE}/${id}`).remove();
+        showToast("Data berhasil dihapus 🗑️");
+      } catch (err) {
+        showToast("Gagal hapus: " + err.message);
       }
-    });
+    }
   });
 
-  // attach editable blur handlers
+  // editable blur -> save
   document.querySelectorAll(".editable").forEach(cell => {
-    cell.addEventListener("blur", e => {
+    cell.addEventListener("blur", (e) => {
       const tr = e.target.closest("tr");
       const id = tr.dataset.id;
       const field = e.target.dataset.field;
       const value = e.target.textContent.trim();
-      db.ref(`pendaftar/${id}/${field}`).set(value)
-        .then(() => showToast("Data diperbarui ✏️"))
+      // normalize field names for telp vs nomor
+      const saveField = (field === "telp") ? "telp" : field;
+      db.ref(`${NODE}/${id}/${saveField}`).set(value)
+        .then(()=> showToast("Data diperbarui ✏️"))
         .catch(err => showToast("Gagal update: " + err.message));
     });
   });
 }
 
 // search
-if (searchInput) {
-  searchInput.addEventListener("input", e => {
-    const keyword = e.target.value.toLowerCase();
-    const filtered = Object.fromEntries(
-      Object.entries(allData).filter(([_, v]) =>
-        (v.nama && v.nama.toLowerCase().includes(keyword)) ||
-        (v.npm && v.npm.toLowerCase().includes(keyword)) ||
-        (v.telepon && v.telepon.toLowerCase().includes(keyword))
-      )
-    );
-    renderTable(filtered);
-  });
-}
+searchInput.addEventListener("input", (e) => {
+  const q = (e.target.value || "").toLowerCase();
+  if (!q) return renderTable(allData);
+  const filtered = Object.fromEntries(Object.entries(allData || {}).filter(([k,v]) => {
+    const s = `${v.nama||""} ${v.npm||""} ${v.telp||v.nomorTelp||""} ${v.region||""}`.toLowerCase();
+    return s.includes(q);
+  }));
+  renderTable(filtered);
+});
+
+// refresh button (one-shot)
+refreshBtn.addEventListener("click", () => {
+  showToast("Memuat ulang ...");
+  // detach and re-attach listener to force refresh
+  db.ref(NODE).off();
+  loadData();
+});
 
 // download CSV
-if (downloadBtn) {
-  downloadBtn.addEventListener("click", () => {
-    if (!allData || Object.keys(allData).length === 0) return showToast("Tidak ada data untuk diunduh!");
-    let csv = "Nama,NPM,Prodi,Angkatan,Region,NoTelp,Divisi1,Alasan1,Divisi2,Alasan2,LinkKRS\n";
-    Object.values(allData).forEach(d => {
-      csv += `"${d.nama||''}","${d.npm||''}","${d.prodi||''}","${d.angkatan||''}","${d.region||''}","${d.telepon||''}","${d.divisi1||''}","${d.alasan1||''}","${d.divisi2||''}","${d.alasan2||''}","${d.krsURL||''}"\n`;
-    });
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a'); a.href = url; a.download = 'data_pendaftar_kmk_natal_2025.csv'; a.click();
-    showToast("CSV diunduh 📂");
+downloadBtn.addEventListener("click", () => {
+  if (!allData || Object.keys(allData).length === 0) return showToast("Tidak ada data untuk diunduh");
+  let csv = "Nama,NPM,Prodi,Angkatan,NomorTelp,Region,Divisi1,Alasan1,Divisi2,Alasan2,LinkKRS\n";
+  Object.values(allData).forEach(item => {
+    const row = [
+      item.nama||"",
+      item.npm||"",
+      item.prodi||"",
+      item.angkatan||"",
+      (item.telp||item.nomorTelp||""),
+      item.region||"",
+      item.divisi1||item.divisi_1||"",
+      item.alasan1||"",
+      item.divisi2||item.divisi_2||"",
+      item.alasan2||"",
+      item.krsURL||item.krs||""
+    ];
+    csv += row.map(r => `"${String(r).replace(/"/g,'""')}"`).join(",") + "\n";
   });
-}
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "data_pendaftar_kmk_natal_2025.csv"; document.body.appendChild(a); a.click(); a.remove();
+  showToast("CSV berhasil diunduh 📂");
+});
 
-// refresh
-if (refreshBtn) refreshBtn.addEventListener("click", loadData);
-
-// toast
-function showToast(msg) {
-  toastEl.textContent = msg;
-  toastEl.className = "show";
-  setTimeout(() => toastEl.className = "", 3000);
+// util escape
+function escapeHtml(str){
+  if (!str) return "";
+  return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 }
