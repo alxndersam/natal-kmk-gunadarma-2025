@@ -1,103 +1,117 @@
-// Inisialisasi Firebase
+// === Konfigurasi Firebase ===
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
+  apiKey: "AIzaSyBwZNBcA78NJQUzUA-D1QaxblnrSKwQUhM",
+  authDomain: "kmk-natal-2025.firebaseapp.com",
   databaseURL: "https://kmk-natal-2025-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "kmk-natal-2025",
-  storageBucket: "kmk-natal-2025.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID",
+  storageBucket: "kmk-natal-2025.firebasestorage.app",
+  messagingSenderId: "662210467099",
+  appId: "1:662210467099:web:8c5c61d5d9598498fd6fbe",
+  measurementId: "G-1G2K8GSGMV"
 };
 
 firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
+const db = firebase.database();
 
-// Referensi node pendaftar
-const dataRef = database.ref("pendaftar");
+const ADMIN_PASS = "kmknatal2025";
 
-// Fungsi render tabel
-function renderTable(snapshot) {
-  const tbody = document.getElementById("data-body");
-  tbody.innerHTML = "";
+// Elemen DOM
+const loginScreen = document.getElementById("login-screen");
+const adminPanel = document.getElementById("admin-panel");
+const loginBtn = document.getElementById("login-btn");
+const logoutBtn = document.getElementById("logoutBtn");
+const reloadBtn = document.getElementById("reloadBtn");
+const downloadBtn = document.getElementById("downloadCSV");
+const tableBody = document.getElementById("data-body");
+const errorText = document.getElementById("login-error");
 
-  let index = 1;
-  snapshot.forEach((childSnapshot) => {
-    const item = childSnapshot.val();
+// === LOGIN ===
+loginBtn.addEventListener("click", () => {
+  const inputPass = document.getElementById("admin-pass").value.trim();
+  if (inputPass === ADMIN_PASS) {
+    loginScreen.classList.add("hidden");
+    adminPanel.classList.remove("hidden");
+    loadData();
+  } else {
+    errorText.textContent = "❌ Password salah!";
+  }
+});
 
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${index++}</td>
-      <td>${item.nama || "-"}</td>
-      <td>${item.npm || "-"}</td>
-      <td>${item.prodi || "-"}</td>
-      <td>${item.angkatan || "-"}</td>
-      <td>${item.telepon || "-"}</td>
-      <td>${item.region || "-"}</td>
-      <td>${item.divisi1 || "-"}</td>
-      <td>${item.alasan1 || "-"}</td>
-      <td>${item.divisi2 || "-"}</td>
-      <td>${item.alasan2 || "-"}</td>
-      <td><a href="${item.linkKRS || "#"}" target="_blank">Link</a></td>
-      <td><button class="hapus-btn" data-id="${childSnapshot.key}">🗑</button></td>
-    `;
-    tbody.appendChild(row);
-  });
+// === LOGOUT ===
+logoutBtn.addEventListener("click", () => {
+  adminPanel.classList.add("hidden");
+  loginScreen.classList.remove("hidden");
+  document.getElementById("admin-pass").value = "";
+});
 
-  // tombol hapus
-  document.querySelectorAll(".hapus-btn").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const id = e.target.getAttribute("data-id");
-      if (confirm("Yakin mau hapus data ini?")) {
-        dataRef.child(id).remove();
+// === AMBIL DATA ===
+function loadData() {
+  tableBody.innerHTML = "<tr><td colspan='13'>⏳ Memuat data...</td></tr>";
+
+  db.ref("pendaftar").once("value")
+    .then(snapshot => {
+      const data = snapshot.val();
+      if (!data) {
+        tableBody.innerHTML = "<tr><td colspan='13'>Belum ada data pendaftar.</td></tr>";
+        return;
       }
+
+      tableBody.innerHTML = "";
+      Object.entries(data).forEach(([id, item], i) => {
+        const row = `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${item.nama || ""}</td>
+            <td>${item.npm || ""}</td>
+            <td>${item.prodi || ""}</td>
+            <td>${item.angkatan || ""}</td>
+            <td>${item.telepon || ""}</td>
+            <td>${item.region || ""}</td>
+            <td>${item.divisi1 || ""}</td>
+            <td>${item.alasan1 || ""}</td>
+            <td>${item.divisi2 || ""}</td>
+            <td>${item.alasan2 || ""}</td>
+            <td><a href="${item.krsURL}" target="_blank">Lihat</a></td>
+            <td><button class="delete-btn" data-id="${id}">Hapus</button></td>
+          </tr>`;
+        tableBody.insertAdjacentHTML("beforeend", row);
+      });
+
+      document.querySelectorAll(".delete-btn").forEach(btn => {
+        btn.addEventListener("click", e => {
+          const id = e.target.getAttribute("data-id");
+          if (confirm("Yakin ingin menghapus data ini?")) {
+            db.ref("pendaftar/" + id).remove();
+            loadData();
+          }
+        });
+      });
+    })
+    .catch(err => {
+      tableBody.innerHTML = `<tr><td colspan='13'>❌ Gagal memuat data: ${err.message}</td></tr>`;
     });
-  });
 }
 
-// Ambil data real-time
-dataRef.on("value", renderTable);
+reloadBtn.addEventListener("click", loadData);
 
-// Tombol muat ulang
-document.getElementById("reloadBtn").addEventListener("click", () => {
-  dataRef.once("value").then(renderTable);
-});
+// === DOWNLOAD CSV ===
+downloadBtn.addEventListener("click", () => {
+  db.ref("pendaftar").once("value")
+    .then(snapshot => {
+      const data = snapshot.val();
+      if (!data) return alert("Belum ada data untuk diunduh.");
 
-// Tombol unduh CSV
-document.getElementById("downloadCSV").addEventListener("click", () => {
-  dataRef.once("value").then((snapshot) => {
-    let csvContent = "data:text/csv;charset=utf-8,";
-    csvContent += "Nama,NPM,Prodi,Angkatan,Telepon,Region,Divisi1,Alasan1,Divisi2,Alasan2,Link KRS\n";
+      let csv = "Nama,NPM,Prodi,Angkatan,Telepon,Region,Divisi1,Alasan1,Divisi2,Alasan2,Link KRS\n";
+      Object.values(data).forEach(item => {
+        csv += `"${item.nama}","${item.npm}","${item.prodi}","${item.angkatan}","${item.telepon}","${item.region}","${item.divisi1}","${item.alasan1}","${item.divisi2}","${item.alasan2}","${item.krsURL}"\n`;
+      });
 
-    snapshot.forEach((childSnapshot) => {
-      const item = childSnapshot.val();
-      const row = [
-        item.nama,
-        item.npm,
-        item.prodi,
-        item.angkatan,
-        item.telepon,
-        item.region,
-        item.divisi1,
-        item.alasan1,
-        item.divisi2,
-        item.alasan2,
-        item.linkKRS,
-      ]
-        .map((v) => `"${v || "-"}"`)
-        .join(",");
-      csvContent += row + "\n";
+      const blob = new Blob([csv], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "data_pendaftar_kmk_natal_2025.csv";
+      a.click();
+      a.remove();
     });
-
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "data_pendaftar.csv");
-    document.body.appendChild(link);
-    link.click();
-  });
-});
-
-// Tombol logout
-document.getElementById("logoutBtn").addEventListener("click", () => {
-  window.location.href = "index.html";
 });
