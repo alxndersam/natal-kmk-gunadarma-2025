@@ -123,7 +123,7 @@ downloadBtn.addEventListener("click", () => {
       const rows = Object.values(data);
       let csv = "Nama,NPM,Prodi,Angkatan,Nomor Telp,Region,Divisi1,Alasan1,Divisi2,Alasan2,LinkKRS\n";
       rows.forEach(item => {
-        csv += `"${item.nama}","${item.npm}","${item.prodi}","${item.angkatan}","${item.telp || ""}","${item.region}","${item.divisi1}","${item.alasan1}","${item.divisi2}","${item.alasan2}","${item.krsURL}"\n`;
+        csv += `"${item.nama}","${item.npm}","${item.prodi}","${item.angkatan}","${item.telepon || ""}","${item.region}","${item.divisi1}","${item.alasan1}","${item.divisi2}","${item.alasan2}","${item.krsURL}"\n`;
       });
 
       const blob = new Blob([csv], { type: "text/csv" });
