@@ -1,101 +1,218 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Open Recruitment Panitia Natal KMK Gunadarma 2025</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-  <script defer src="script.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pendaftaran Panitia Natal KMK 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Mountains+of+Christmas:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(90deg, #b31217, #2d6a4f);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      background: rgba(0,0,0,0.2);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+    }
+    header h1 {
+      font-family: 'Mountains of Christmas', cursive;
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+
+    .section {
+      text-align: center;
+      padding: 50px 20px;
+      margin: 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    input, select, textarea {
+      width: 80%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 5px;
+      background: rgba(255,255,255,0.9);
+      font-size: 1rem;
+    }
+
+    button {
+      background: #2d6a4f;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 10px;
+      border: none;
+      margin-top: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    button:hover { background: #1b4332; }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      background: rgba(0,0,0,0.5);
+    }
+
+    /* Responsif */
+    @media (max-width: 768px) {
+      header h1 { font-size: 2rem; }
+      input, select, textarea { width: 95%; }
+      button { width: 90%; }
+    }
+
+    /* Tutorial Section */
+    .tutorial {
+      text-align: left;
+      background: rgba(255,255,255,0.08);
+      padding: 30px;
+      border-radius: 15px;
+      margin-top: 40px;
+    }
+    .tutorial h3 {
+      color: #ffe066;
+      text-align: center;
+    }
+    .tutorial ol {
+      margin-left: 20px;
+      line-height: 1.8;
+    }
+  </style>
 </head>
-
 <body>
-  <canvas id="snow"></canvas>
-
-  <header class="hero">
-    <h1>🎄 OPEN RECRUITMENT 🎄</h1>
-    <h2>Panitia Natal KMK Gunadarma 2025</h2>
-    <p>1 – 3 November 2025</p>
+  <header>
+    <h1>🎄 Pendaftaran Panitia Natal KMK 2025 🎄</h1>
+    <p>Isi data dengan lengkap dan jujur ya! Tuhan memberkati 🙏</p>
   </header>
 
-  <section class="about section">
-    <h2>✨ Tentang Acara ✨</h2>
-    <p>
-      Natal sudah di depan mata! Yuk, jadi bagian dari kepanitiaan
-      <b>NATAL KMK GUNADARMA 2025</b> dan ambil peran dalam sukacita kelahiran Sang Juru Selamat! 🙌
-    </p>
-  </section>
-
-  <section id="form" class="form-section section">
-    <h2>📝 Form Pendaftaran</h2>
-    <form id="regForm">
+  <section class="section">
+    <form id="pendaftaranForm">
       <label>Nama Lengkap</label>
-      <input type="text" id="nama" name="nama" required>
+      <input type="text" id="nama" required>
 
       <label>NPM</label>
-      <input type="text" id="npm" name="npm" required>
+      <input type="text" id="npm" required>
 
       <label>Program Studi</label>
-      <input type="text" id="prodi" name="prodi" required>
+      <input type="text" id="prodi" required>
 
       <label>Angkatan</label>
-      <select id="angkatan" name="angkatan" required>
-        <option value="">-- Pilih Angkatan --</option>
-        <option value="23">23</option>
-        <option value="24">24</option>
-        <option value="25">25</option>
-      </select>
-
-      <label>Nomor Telepon</label>
-      <input type="tel" id="noTelp" name="noTelp" placeholder="08xxxxxxxxxx" required>
+      <input type="text" id="angkatan" required>
 
       <label>Region</label>
-      <select id="region" name="region" required>
+      <select id="region" required>
         <option value="">-- Pilih Region --</option>
-        <option value="Depok">Depok</option>
-        <option value="Kalimalang">Kalimalang</option>
-        <option value="Karawaci">Karawaci</option>
+        <option>Depok</option>
+        <option>Kalimalang</option>
+        <option>Karawaci</option>
+        <option>Cengkareng</option>
       </select>
+
+      <label>No. Telepon (aktif WhatsApp)</label>
+      <input type="tel" id="notelp" required>
 
       <label>Pilihan Divisi 1</label>
-      <select id="divisi1" name="divisi1" required>
-        <option value="">-- Pilih Divisi --</option>
-        <option value="Acara">Acara</option>
-        <option value="HPDD">HPDD</option>
-        <option value="MDK">MDK</option>
-        <option value="TKP">TKP</option>
-      </select>
+      <input type="text" id="divisi1" required>
 
-      <label>Alasan memilih divisi 1</label>
-      <textarea id="alasan1" name="alasan1" rows="3" required></textarea>
+      <label>Alasan Pilihan Divisi 1</label>
+      <textarea id="alasan1" required></textarea>
 
       <label>Pilihan Divisi 2</label>
-      <select id="divisi2" name="divisi2" required>
-        <option value="">-- Pilih Divisi --</option>
-        <option value="Acara">Acara</option>
-        <option value="HPDD">HPDD</option>
-        <option value="MDK">MDK</option>
-        <option value="TKP">TKP</option>
-      </select>
+      <input type="text" id="divisi2">
 
-      <label>Alasan memilih divisi 2</label>
-      <textarea id="alasan2" name="alasan2" rows="3" required></textarea>
+      <label>Alasan Pilihan Divisi 2</label>
+      <textarea id="alasan2"></textarea>
 
-      <label>Link Google Drive (KRS)</label>
-      <input type="url" id="krsURL" name="krsURL" placeholder="https://drive.google.com/..." required>
+      <label>Link Drive KRS</label>
+      <input type="url" id="krsURL" placeholder="https://drive.google.com/..." required>
 
-      <p class="note">⚠️ Pastikan link dapat diakses oleh siapa pun dengan tautan tersebut.</p>
-
-      <button type="submit" class="btn-primary">Kirim Pendaftaran 🎁</button>
-      <p id="quotaStatus" class="quota"></p>
+      <button type="submit">Kirim Pendaftaran</button>
     </form>
+
+    <div id="msg" style="margin-top:20px; font-weight:600;"></div>
   </section>
 
-  <footer>
-    <p>📞 Contact Person: <b>Patrick</b> – +62 812-3720-5071</p>
-    <p>© 2025 KMK Universitas Gunadarma</p>
-  </footer>
+  <section class="section tutorial">
+    <h3>🧾 Tutorial Upload & Isi KRS</h3>
+    <h4>💻 Melalui Laptop</h4>
+    <ol>
+      <li>Buka KRS kamu (PDF / screenshot).</li>
+      <li>Upload ke Google Drive.</li>
+      <li>Klik kanan → “Dapatkan tautan”.</li>
+      <li>Ubah jadi <b>“Siapa saja yang memiliki link dapat melihat”</b>.</li>
+      <li>Copy link-nya dan tempel di kolom Link KRS di atas.</li>
+    </ol>
+
+    <h4>📱 Melalui HP</h4>
+    <ol>
+      <li>Buka aplikasi Google Drive → unggah file KRS kamu.</li>
+      <li>Tekan titik tiga (⋮) di file → pilih “Kelola akses”.</li>
+      <li>Ubah jadi “Siapa saja dengan tautan”.</li>
+      <li>Salin link dan tempel ke kolom Link KRS.</li>
+    </ol>
+  </section>
+
+  <footer>© KMK Universitas Gunadarma 2025 • Natal Bersama • Gloria in Excelsis Deo 🎶</footer>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBwZNBcA78NJQUzUA-D1QaxblnrSKwQUhM",
+      authDomain: "kmk-natal-2025.firebaseapp.com",
+      databaseURL: "https://kmk-natal-2025-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "kmk-natal-2025",
+      storageBucket: "kmk-natal-2025.firebasestorage.app",
+      messagingSenderId: "662210467099",
+      appId: "1:662210467099:web:8c5c61d5d9598498fd6fbe",
+      measurementId: "G-1G2K8GSGMV"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    document.getElementById("pendaftaranForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const data = {
+        nama: nama.value,
+        npm: npm.value,
+        prodi: prodi.value,
+        angkatan: angkatan.value,
+        region: region.value,
+        notelp: notelp.value,
+        divisi1: divisi1.value,
+        alasan1: alasan1.value,
+        divisi2: divisi2.value,
+        alasan2: alasan2.value,
+        krsURL: krsURL.value
+      };
+      db.ref("pendaftar").push(data).then(() => {
+        document.getElementById("msg").textContent = "✅ Pendaftaran berhasil dikirim!";
+        document.getElementById("pendaftaranForm").reset();
+      }).catch(() => {
+        document.getElementById("msg").textContent = "❌ Terjadi kesalahan, coba lagi.";
+      });
+    });
+  </script>
 </body>
 </html>
