@@ -15,82 +15,44 @@
   <canvas id="snow"></canvas>
 
   <header class="hero">
-    <div class="overlay"></div>
     <h1>🎄 OPEN RECRUITMENT 🎄</h1>
     <h2>Panitia Natal KMK Gunadarma 2025</h2>
-    <p><b>1 – 3 November 2025</b></p>
+    <p>1 – 3 November 2025</p>
   </header>
 
   <section class="about section">
     <h2>✨ Tentang Acara ✨</h2>
     <p>
-      Natal sudah di depan mata! Saatnya kita bersatu dalam sukacita kelahiran Sang Juru Selamat.
-      Yuk, ambil bagian dalam kepanitiaan <b>NATAL KMK GUNADARMA 2025</b> dan jadilah bagian dari momen berkat yang penuh sukacita! 🙌
+      Natal sudah di depan mata! Yuk, jadi bagian dari kepanitiaan
+      <b>NATAL KMK GUNADARMA 2025</b> dan ambil peran dalam sukacita kelahiran Sang Juru Selamat! 🙌
     </p>
-  </section>
-
-  <section class="divisions section">
-    <h2>🎅 Pilihan Divisi 🎅</h2>
-    <div class="cards">
-      <div class="card"><h3>ACARA</h3><p>Menyusun konsep acara penuh sukacita! 🎤</p></div>
-      <div class="card"><h3>HPDD</h3><p>Humas, Publikasi, Dekorasi, Dokumentasi 📸</p></div>
-      <div class="card"><h3>MDK</h3><p>Medis, Dana, Konsumsi 💰</p></div>
-      <div class="card"><h3>TKP</h3><p>Transportasi, Keamanan, Perlengkapan 💪</p></div>
-    </div>
-  </section>
-
-  <section class="bph section">
-    <h2>👑 Profil BPH Panitia 👑</h2>
-    <div class="bph-cards">
-      <div class="bph-card">
-        <img src="images/patrick.jpg" alt="Patrick">
-        <h3>Patrick Charlytho</h3>
-        <p><b>PO</b> — PIC Divisi Acara</p>
-        <p>Psikologi · Angkatan 24</p>
-      </div>
-      <div class="bph-card">
-        <img src="images/samuel.jpg" alt="Samuel">
-        <h3>Christopher Samuel</h3>
-        <p><b>Sekretaris</b> — PIC Divisi HPDD</p>
-        <p>Sistem Informasi · Angkatan 24</p>
-      </div>
-      <div class="bph-card">
-        <img src="images/caca.jpg" alt="Caca">
-        <h3>Chisafeby Cahaya Camilla</h3>
-        <p><b>Bendahara</b> — PIC Divisi MDK</p>
-        <p>Psikologi · Angkatan 24</p>
-      </div>
-      <div class="bph-card">
-        <img src="images/memet.jpg" alt="Memet">
-        <h3>Matthew Denzel Rindu</h3>
-        <p><b>Sekretaris</b> — PIC Divisi TKP</p>
-        <p>Psikologi · Angkatan 24</p>
-      </div>
-    </div>
   </section>
 
   <section id="form" class="form-section section">
     <h2>📝 Form Pendaftaran</h2>
     <form id="regForm">
       <label>Nama Lengkap</label>
-      <input type="text" name="nama" required>
+      <input type="text" id="nama" name="nama" required>
 
       <label>NPM</label>
-      <input type="text" name="npm" required>
+      <input type="text" id="npm" name="npm" required>
 
       <label>Program Studi</label>
-      <input type="text" name="prodi" required>
+      <input type="text" id="prodi" name="prodi" required>
 
       <label>Angkatan</label>
-      <select name="angkatan" required>
+      <select id="angkatan" name="angkatan" required>
         <option value="">-- Pilih Angkatan --</option>
         <option value="23">23</option>
         <option value="24">24</option>
         <option value="25">25</option>
       </select>
 
+      <label>Nomor Telepon</label>
+      <input type="tel" id="noTelp" name="noTelp" placeholder="08xxxxxxxxxx" required>
+
       <label>Region</label>
-      <select name="region" required>
+      <select id="region" name="region" required>
         <option value="">-- Pilih Region --</option>
         <option value="Depok">Depok</option>
         <option value="Kalimalang">Kalimalang</option>
@@ -98,7 +60,7 @@
       </select>
 
       <label>Pilihan Divisi 1</label>
-      <select name="divisi1" required>
+      <select id="divisi1" name="divisi1" required>
         <option value="">-- Pilih Divisi --</option>
         <option value="Acara">Acara</option>
         <option value="HPDD">HPDD</option>
@@ -107,10 +69,10 @@
       </select>
 
       <label>Alasan memilih divisi 1</label>
-      <textarea name="alasan1" rows="3" required></textarea>
+      <textarea id="alasan1" name="alasan1" rows="3" required></textarea>
 
       <label>Pilihan Divisi 2</label>
-      <select name="divisi2" required>
+      <select id="divisi2" name="divisi2" required>
         <option value="">-- Pilih Divisi --</option>
         <option value="Acara">Acara</option>
         <option value="HPDD">HPDD</option>
@@ -119,41 +81,16 @@
       </select>
 
       <label>Alasan memilih divisi 2</label>
-      <textarea name="alasan2" rows="3" required></textarea>
+      <textarea id="alasan2" name="alasan2" rows="3" required></textarea>
 
-      <label>Link Google Drive (KRS diunggah ke Google Drive dahulu)</label>
-      <input type="url" name="krsURL" placeholder="https://drive.google.com/..." required>
-      <p class="note">⚠️ Pastikan file KRS bisa diakses publik <b>(anyone with the link)</b>.</p>
+      <label>Link Google Drive (KRS)</label>
+      <input type="url" id="krsURL" name="krsURL" placeholder="https://drive.google.com/..." required>
+
+      <p class="note">⚠️ Pastikan link dapat diakses oleh siapa pun dengan tautan tersebut.</p>
 
       <button type="submit" class="btn-primary">Kirim Pendaftaran 🎁</button>
       <p id="quotaStatus" class="quota"></p>
     </form>
-
-    <!-- TUTORIAL DESKTOP -->
-    <div class="tutorial">
-      <h3>💻 Cara Upload KRS ke Google Drive (Laptop/PC)</h3>
-      <ol>
-        <li>Buka <b>Google Drive</b> di browser kamu.</li>
-        <li>Klik <b>+ Baru → Upload file</b> dan pilih file KRS kamu (PDF disarankan).</li>
-        <li>Setelah selesai diunggah, klik kanan file → pilih <b>Dapatkan link</b>.</li>
-        <li>Ubah akses menjadi <b>Siapa saja yang memiliki link dapat melihat</b>.</li>
-        <li>Salin link tersebut dan tempel ke kolom “Link Google Drive (KRS)” di atas.</li>
-      </ol>
-    </div>
-
-    <!-- TUTORIAL HP -->
-    <div class="tutorial tutorial-hp">
-      <h3>📱 Cara Upload KRS lewat HP</h3>
-      <ol>
-        <li>Buka aplikasi <b>Google Drive</b> di HP kamu (login pakai akun UG/Google).</li>
-        <li>Tekan tombol <b>“+”</b> di kanan bawah → pilih <b>Upload</b>.</li>
-        <li>Pilih file KRS kamu dari galeri/dokumen (format PDF disarankan).</li>
-        <li>Setelah selesai diupload, tekan titik tiga (⋮) di file → pilih <b>Kelola orang dan link</b>.</li>
-        <li>Ubah akses menjadi <b>“Siapa saja yang memiliki link”</b> dan pastikan <b>“Dapat melihat”</b>.</li>
-        <li>Salin link-nya dan tempelkan ke kolom form pendaftaran di atas.</li>
-      </ol>
-      <p class="note">✨ Tips: Pastikan koneksi stabil agar file KRS terunggah sempurna sebelum disalin link-nya.</p>
-    </div>
   </section>
 
   <footer>
