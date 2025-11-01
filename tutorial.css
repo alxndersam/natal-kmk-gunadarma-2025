@@ -1,0 +1,77 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(120deg, #b31217, #2d6a4f);
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.tutorial-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+section {
+  background: rgba(255, 255, 255, 0.08);
+  border-left: 4px solid #9ef7c6;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+
+section:hover {
+  transform: scale(1.02);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+h2 {
+  margin-top: 0;
+  color: #ffe6a7;
+  font-size: 1.1rem;
+}
+
+p {
+  margin: 5px 0;
+  line-height: 1.6;
+}
+
+a {
+  color: #9ef7c6;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  margin-top: 25px;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #e5e5e5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .tutorial-container {
+    margin: 15px;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  section {
+    padding: 12px;
+  }
+}
