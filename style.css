@@ -6,69 +6,39 @@ body {
   overflow-x: hidden;
 }
 
+/* Section umum */
 .section {
   text-align: center;
-  padding: 80px 20px;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+  padding: 60px 20px;
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(4px);
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   border-radius: 20px;
+  backdrop-filter: blur(6px);
 }
 
+/* Hero section */
 .hero {
-  height: 70vh;
+  height: 65vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
   background: linear-gradient(90deg, #b31217, #2d6a4f);
 }
 
 .hero h1 {
   font-family: 'Mountains of Christmas', cursive;
-  font-size: 3.2rem;
-}
-.hero h2 { font-weight: 600; margin-top: 10px; }
-
-.cards, .bph-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-
+  font-size: 3rem;
 }
 
-.card, .bph-card {
-  background: rgba(255,255,255,0.1);
-  border-radius: 15px;
-  padding: 25px;
-  width: 230px;
-  transition: 0.3s;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
-
-.card:hover, .bph-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-
-.bph-card img {
-  width: 100%;
-  border-radius: 12px;
-  margin-bottom: 10px;
-}
-
+/* Form styling */
 form {
   max-width: 600px;
   margin: 0 auto;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.07);
   padding: 40px 30px;
   border-radius: 20px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(6px);
 }
 
 form label {
@@ -76,118 +46,40 @@ form label {
   text-align: left;
   margin-top: 15px;
   font-weight: 600;
-  color: #fff;
 }
 
-form input, form select, form textarea {
+form input,
+form select,
+form textarea {
   width: 100%;
-  padding: 10px 12px;
+  padding: 10px;
   font-size: 0.95rem;
-  border: 1.5px solid #ccc;
   border-radius: 8px;
+  border: 1.5px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.9);
   margin-top: 5px;
-  background: rgba(255, 255, 255, 0.9);
-  transition: 0.3s;
-}
-
-form input:focus, form select:focus, form textarea:focus {
-  border-color: #d62828;
-  box-shadow: 0 0 6px rgba(214, 40, 40, 0.3);
 }
 
 form .btn-primary {
   background: #2d6a4f;
-  color: white;
-  padding: 14px 35px;
+  color: #fff;
+  padding: 15px 35px;
   font-size: 1rem;
+  font-weight: 600;
   border-radius: 12px;
   border: none;
   margin-top: 25px;
   cursor: pointer;
-  transition: 0.35s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
 }
-
 form .btn-primary:hover {
   background: #1b4332;
   transform: translateY(-3px);
-  box-shadow: 0 0 15px rgba(24, 140, 60, 0.7);
 }
 
-.note {
-  font-size: 0.9rem;
-  color: #f8d7da;
-  margin-top: 8px;
-}
-
-.tutorial {
-  max-width: 600px;
-  margin: 40px auto 0;
-  background: rgba(255,255,255,0.07);
-  border-radius: 15px;
-  padding: 25px 20px;
-  text-align: left;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-}
-
-.tutorial h3 {
-  color: #ffdd99;
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.tutorial ol {
-  padding-left: 20px;
-  line-height: 1.6;
-}
-
-.tutorial-hp {
-  margin-top: 30px;
-  background: rgba(255,255,255,0.08);
-}
-
-.tutorial-hp h3 {
-  color: #ffaaaa;
-}
-
-.tutorial-hp ol li::marker {
-  color: #ffb3b3;
-}
-
+/* Responsif */
 @media (max-width: 768px) {
-  .tutorial, .tutorial-hp {
-    width: 90%;
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-  .tutorial ol, .tutorial-hp ol {
-    padding-left: 20px;
-  }
-  .tutorial h3, .tutorial-hp h3 {
-    font-size: 1.1rem;
-  }
-}
-
-footer {
-  text-align: center;
-  background: rgba(0,0,0,0.5);
-  padding: 30px;
-  font-size: 0.9rem;
-}
-
-/* RESPONSIVE MODE */
-@media (max-width: 768px) {
-  .hero h1 { font-size: 2.3rem; }
-  .hero h2 { font-size: 1.2rem; }
-  form, .tutorial { width: 90%; padding: 25px 20px; }
-  input, select, textarea { font-size: 0.9rem; }
-  .btn-primary { width: 100%; font-size: 1.05rem; padding: 14px; }
-}
-
-canvas#snow {
-  position: fixed;
-  top: 0; left: 0;
-  z-index: -1;
-  width: 100%; height: 100%;
-  pointer-events: none;
+  .hero h1 { font-size: 2.2rem; }
+  form { padding: 25px 20px; }
+  form label { font-size: 0.9rem; }
 }
