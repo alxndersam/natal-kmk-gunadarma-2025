@@ -1,85 +1,63 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Admin Panel - Panitia Natal KMK 2025</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel Panitia Natal 2025 🎄</title>
   <link rel="stylesheet" href="admin.css">
-  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-  <script defer src="admin.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
 <body>
-  <!-- HERO / HEADER (short) -->
-  <header class="admin-hero">
-    <h1>🎄 Admin Panel Panitia Natal 2025 🎄</h1>
-  </header>
+  <div id="login-screen">
+    <h2>🔒 Admin Login</h2>
+    <input type="password" id="admin-pass" placeholder="Masukkan Password Admin">
+    <br>
+    <button id="login-btn">Masuk</button>
+    <p id="login-error" class="error"></p>
+  </div>
 
-  <!-- LOGIN SCREEN -->
-  <main class="container">
-    <section id="login-screen" class="card center">
-      <h2>🔒 Masuk Admin</h2>
-      <p>Masukkan password untuk melihat data pendaftar.</p>
-      <input id="admin-pass" type="password" placeholder="Password admin" />
-      <div class="row">
-        <button id="login-btn" class="btn">Login</button>
+  <div id="admin-panel" class="hidden">
+    <header>
+      <h2>🎄 Admin Panel Panitia Natal 2025 🎄</h2>
+      <div class="controls">
+        <input type="text" id="search" placeholder="Cari nama / NPM / telp...">
+        <button id="refresh">🔁 Muat Ulang</button>
+        <button id="download">⬇️ Unduh CSV</button>
+        <button id="logout">🚪 Logout</button>
       </div>
-      <p id="login-error" class="error"></p>
-      <p class="small-note">Password dibagi oleh Ketua Panitia.</p>
-    </section>
+    </header>
 
-    <!-- ADMIN PANEL -->
-    <section id="admin-panel" class="hidden">
-      <div class="panel-top card">
-        <div class="panel-left">
-          <h2>📋 Data Pendaftar</h2>
-          <p class="small-note">Node: <code>pendaftar</code></p>
-        </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>NPM</th>
+            <th>Prodi</th>
+            <th>Angkatan</th>
+            <th>Nomor Telp</th>
+            <th>Region</th>
+            <th>Divisi 1</th>
+            <th>Alasan 1</th>
+            <th>Divisi 2</th>
+            <th>Alasan 2</th>
+            <th>Link KRS</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
 
-        <div class="panel-right">
-          <input id="search" type="search" placeholder="Cari nama / NPM / telp..." />
-          <button id="refresh" class="btn small">🔄 Muat Ulang</button>
-          <button id="download" class="btn small green">⬇️ Unduh CSV</button>
-          <button id="logout" class="btn small red">🚪 Logout</button>
-        </div>
-      </div>
-
-      <div class="table-wrap card">
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>NPM</th>
-                <th>Prodi</th>
-                <th>Angkatan</th>
-                <th>Nomor Telp</th>
-                <th>Region</th>
-                <th>Divisi 1</th>
-                <th>Alasan 1</th>
-                <th>Divisi 2</th>
-                <th>Alasan 2</th>
-                <th>Link KRS</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody id="table-body">
-              <tr><td colspan="13">⏳ Memuat data...</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
+    <footer>
       <p>© 2025 KMK Universitas Gunadarma</p>
     </footer>
-  </main>
+  </div>
 
-  <!-- toast -->
-  <div id="toast" class="toast"></div>
+  <div id="toast"></div>
+  <script src="admin.js"></script>
 </body>
 </html>
