@@ -3,53 +3,163 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pendaftaran Natal KMK 2025</title>
+  <title>Open Recruitment Panitia Natal KMK Gunadarma 2025</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+  <script defer src="script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <div class="container">
-    <h1>🎄 Pendaftaran Natal KMK Gunadarma 2025 🎄</h1>
-    <form id="pendaftaran-form">
-      <label>Nama Lengkap:</label>
-      <input type="text" id="nama" required>
+  <canvas id="snow"></canvas>
 
-      <label>NPM:</label>
-      <input type="text" id="npm" required>
+  <header class="hero">
+    <div class="overlay"></div>
+    <div class="hero-inner">
+      <h1>🎄 OPEN RECRUITMENT 🎄</h1>
+      <h2>Panitia Natal KMK Gunadarma 2025</h2>
+      <p>1 – 3 November 2025</p>
+      <a class="btn-primary scroll-btn" href="#form">Daftar Sekarang</a>
+    </div>
+  </header>
 
-      <label>Program Studi:</label>
-      <input type="text" id="prodi" required>
+  <main>
+    <section class="about section">
+      <h2>✨ Tentang Acara ✨</h2>
+      <p>
+        Natal sudah di depan mata! Saatnya kita bersatu dalam sukacita kelahiran Sang Juru Selamat.
+        Yuk, ambil bagian dalam kepanitiaan <b>NATAL KMK GUNADARMA 2025</b> dan jadilah bagian dari momen berkat yang penuh sukacita! 🙌
+      </p>
+    </section>
 
-      <label>Angkatan:</label>
-      <input type="text" id="angkatan" required>
+    <section class="divisions section">
+      <h2>🎅 Pilihan Divisi 🎅</h2>
+      <div class="cards">
+        <div class="card"><h3>ACARA</h3><p>Menyusun konsep acara penuh sukacita! 🎤</p></div>
+        <div class="card"><h3>HPDD</h3><p>Humas, Publikasi, Dekorasi, Dokumentasi 📸</p></div>
+        <div class="card"><h3>MDK</h3><p>Medis, Dana, Konsumsi 💰</p></div>
+        <div class="card"><h3>TKP</h3><p>Transportasi, Keamanan, Perlengkapan 💪</p></div>
+      </div>
+    </section>
 
-      <label>Region:</label>
-      <input type="text" id="region" required>
+    <section class="bph section">
+      <h2>👑 Profil BPH Panitia 👑</h2>
+      <div class="bph-cards">
+        <div class="bph-card">
+          <img src="images/patrick.jpg" alt="Patrick Charlytho">
+          <h3>Patrick Charlytho</h3>
+          <p><b>PO</b> — PIC Divisi Acara</p>
+          <p>Psikologi · Angkatan 24</p>
+        </div>
+        <div class="bph-card">
+          <img src="images/samuel.jpg" alt="Christopher Samuel">
+          <h3>Christopher Samuel</h3>
+          <p><b>Sekretaris</b> — PIC Divisi HPDD</p>
+          <p>Sistem Informasi · Angkatan 24</p>
+        </div>
+        <div class="bph-card">
+          <img src="images/caca.jpg" alt="Chisafeby Cahaya Camilla">
+          <h3>Chisafeby Cahaya Camilla</h3>
+          <p><b>Bendahara</b> — PIC Divisi MDK</p>
+          <p>Psikologi · Angkatan 24</p>
+        </div>
+        <div class="bph-card">
+          <img src="images/memet.jpg" alt="Matthew Denzel Rindu">
+          <h3>Matthew Denzel Rindu</h3>
+          <p><b>Sekretaris</b> — PIC Divisi TKP</p>
+          <p>Psikologi · Angkatan 24</p>
+        </div>
+      </div>
+    </section>
 
-      <label>Nomor Telepon:</label>
-      <input type="text" id="notelp" required>
+    <section id="form" class="form-section section">
+      <h2>📝 Form Pendaftaran</h2>
+      <form id="regForm" autocomplete="off">
+        <label>Nama Lengkap</label>
+        <input type="text" name="nama" required>
 
-      <label>Divisi 1:</label>
-      <input type="text" id="divisi1" required>
+        <label>NPM</label>
+        <input type="text" name="npm" required>
 
-      <label>Alasan Pilihan 1:</label>
-      <textarea id="alasan1" rows="2"></textarea>
+        <label>Program Studi</label>
+        <input type="text" name="prodi" required>
 
-      <label>Divisi 2 (Opsional):</label>
-      <input type="text" id="divisi2">
+        <label>Angkatan</label>
+        <select name="angkatan" required>
+          <option value="">-- Pilih Angkatan --</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+        </select>
 
-      <label>Alasan Pilihan 2:</label>
-      <textarea id="alasan2" rows="2"></textarea>
+        <label>Region</label>
+        <select name="region" required>
+          <option value="">-- Pilih Region --</option>
+          <option value="Depok">Depok</option>
+          <option value="Kalimalang">Kalimalang</option>
+          <option value="Karawaci">Karawaci</option>
+        </select>
 
-      <label>Upload KRS (link drive):</label>
-      <input type="url" id="krsURL" placeholder="https://drive.google.com/..." required>
+        <label>Nomor Telepon (WA aktif)</label>
+        <input type="tel" name="telepon" placeholder="+62..." required>
 
-      <button type="submit">Kirim Pendaftaran</button>
-    </form>
-    <p id="status"></p>
-  </div>
+        <label>Pilihan Divisi 1</label>
+        <select name="divisi1" required>
+          <option value="">-- Pilih Divisi --</option>
+          <option value="Acara">Acara</option>
+          <option value="HPDD">HPDD</option>
+          <option value="MDK">MDK</option>
+          <option value="TKP">TKP</option>
+        </select>
 
-  <script src="script.js"></script>
+        <label>Alasan memilih divisi 1</label>
+        <textarea name="alasan1" rows="3" required></textarea>
+
+        <label>Pilihan Divisi 2</label>
+        <select name="divisi2" required>
+          <option value="">-- Pilih Divisi --</option>
+          <option value="Acara">Acara</option>
+          <option value="HPDD">HPDD</option>
+          <option value="MDK">MDK</option>
+          <option value="TKP">TKP</option>
+        </select>
+
+        <label>Alasan memilih divisi 2</label>
+        <textarea name="alasan2" rows="3" required></textarea>
+
+        <label>Link Google Drive (KRS diunggah ke Google Drive dahulu)</label>
+        <input type="url" name="krsURL" placeholder="https://drive.google.com/..." required>
+        <p class="note">⚠️ Pastikan file KRS bisa diakses publik (anyone with the link).</p>
+
+        <button type="submit" class="btn-primary">Kirim Pendaftaran 🎁</button>
+        <p id="quotaStatus" class="quota"></p>
+      </form>
+
+      <div class="tutorial">
+        <h3>💻 Cara Upload KRS ke Google Drive (Laptop/PC)</h3>
+        <ol>
+          <li>Buka Google Drive → + Baru → Upload file → pilih file KRS (PDF disarankan).</li>
+          <li>Klik kanan file → Dapatkan link → ubah akses: Siapa saja dengan link dapat melihat.</li>
+          <li>Copy link → tempel di kolom "Link Google Drive (KRS)".</li>
+        </ol>
+      </div>
+
+      <div class="tutorial tutorial-hp">
+        <h3>📱 Cara Upload KRS lewat HP</h3>
+        <ol>
+          <li>Buka aplikasi Google Drive → + → Upload → pilih file KRS.</li>
+          <li>Titik tiga (⋮) pada file → Kelola orang dan link → ubah jadi "Siapa saja yang memiliki link".</li>
+          <li>Salin link → tempel di form pendaftaran.</li>
+        </ol>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>📞 Contact Person: <b>Patrick</b> – +62 812-3720-5071</p>
+    <p>© 2025 KMK Universitas Gunadarma</p>
+  </footer>
 </body>
 </html>
