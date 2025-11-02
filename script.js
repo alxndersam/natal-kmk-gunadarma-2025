@@ -13,7 +13,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-const MAX_QUOTA = 34;
+const MAX_QUOTA = 35;
 const form = document.getElementById("regForm");
 const quotaStatus = document.getElementById("quotaStatus");
 
