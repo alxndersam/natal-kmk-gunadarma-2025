@@ -22,11 +22,16 @@ async function checkQuota() {
   try {
     const snapshot = await db.ref("pendaftar").once("value");
     const count = snapshot.numChildren();
+
     if (count >= MAX_QUOTA) {
       quotaStatus.textContent = "❌ Pendaftaran sudah ditutup (Kuota penuh)";
       form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
+      form.classList.add("closed");
+      document.body.classList.add("closed-bg");
     } else {
       quotaStatus.textContent = `Kuota tersisa: ${MAX_QUOTA - count} panitia`;
+      form.classList.remove("closed");
+      document.body.classList.remove("closed-bg");
     }
   } catch (err) {
     console.error("checkQuota error:", err);
